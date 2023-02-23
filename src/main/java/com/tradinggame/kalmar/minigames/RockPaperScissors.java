@@ -3,7 +3,7 @@ package com.tradinggame.kalmar.minigames;
 import com.tradinggame.kalmar.model.Player;
 
 public class RockPaperScissors implements Minigame {
-
+//lényegtelen komment, töröld ki.
     public static Player RPS_Game(Player playerOne, Player playerTwo, String tip1, String tip2) {
         if (tip1.equals(Move.SCISSORS.getValue()) && tip2.equals(Move.PAPER.getValue())) {
             return playerOne;
