@@ -1,10 +1,13 @@
 package com.tradinggame.kalmar.model;
 
+import lombok.Data;
+
 import java.awt.image.BufferedImage;
 
 /**
  * All not living but able to move entity inherit from this class directly.
  */
+@Data
 public abstract class MovingEntity extends AbstractEntity {
     /**
      * During animation, we change this images, on image field(from super class)

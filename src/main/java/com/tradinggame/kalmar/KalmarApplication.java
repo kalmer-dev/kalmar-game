@@ -9,6 +9,7 @@ public class KalmarApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KalmarApplication.class, args);
+        System.out.println("here");
     }
 
 }
