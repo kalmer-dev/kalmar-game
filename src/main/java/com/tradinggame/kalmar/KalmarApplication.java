@@ -1,6 +1,5 @@
 package com.tradinggame.kalmar;
 
-import com.tradinggame.kalmar.model.Player;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +8,6 @@ public class KalmarApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KalmarApplication.class, args);
-        System.out.println("here");
     }
 
 }
