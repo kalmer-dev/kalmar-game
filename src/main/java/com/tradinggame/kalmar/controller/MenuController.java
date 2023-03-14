@@ -22,7 +22,8 @@ public class MenuController {
     }
 
     @GetMapping("/lobby")
-    public String getLobby(){
+    public String getLobby(@RequestParam("game") Game game, Model model){
+        model.addAttribute("gameID", game.getIdentifier());
         return "lobby";
     }
 
@@ -31,15 +32,7 @@ public class MenuController {
         return "connect";
     }
 
-    @GetMapping("/game")
-    public String getGame(){
-        return "game";
-    }
 
-    @PostMapping("/connect")
-    public String connectToGame(){
-        return "lobby";
-    }
 
     @PostMapping("/connect")
     public String compareInput(@RequestParam("inputValue") String inputValue, Model model) {
