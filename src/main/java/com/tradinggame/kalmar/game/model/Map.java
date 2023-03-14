@@ -1,9 +1,12 @@
 package com.tradinggame.kalmar.game.model;
 
 
+import lombok.Getter;
+
 public class Map {
 
     private int[][] mapAsMatrix = new int[][]{{0, 0, 0, 1}, {0, 1, 0, 0}, {0, 0, 0, 0}, {1, 0, 0, 0}};
+    @Getter
     private Tile[][] tiles;
 
     public Map() {
