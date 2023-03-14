@@ -1,13 +1,17 @@
 package com.tradinggame.kalmar.game.model;
 
 
+import lombok.Getter;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Tile {
+    @Getter
     private BufferedImage image;
+    @Getter
     private Type type;
 
     public Tile(int identifier) {
