@@ -2,9 +2,9 @@ package com.tradinggame.kalmar.game.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 @Data
-@AllArgsConstructor
 public class Game {
     private String identifier;
     private Player player1;
