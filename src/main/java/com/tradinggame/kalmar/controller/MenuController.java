@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 public class MenuController {
-    private List<Game> games = new ArrayList<>();
+    private final List<Game> games = new ArrayList<>();
 
     @GetMapping(path = "/home")
     public String getHome(){
@@ -23,6 +23,8 @@ public class MenuController {
 
     @GetMapping("/lobby")
     public String getLobby(@RequestParam("game") Game game, Model model){
+        System.out.println(game.getIdentifier());
+        model.addAttribute("game", game);
         model.addAttribute("gameID", game.getIdentifier());
         return "lobby";
     }
@@ -47,7 +49,9 @@ public class MenuController {
 
     @PostMapping("/initialize-game")
     public String newGame(Model model){
-        model.addAttribute("game", new Game());
+        Game game = new Game();
+        games.add(game);
+        model.addAttribute("game", game);
         return "/lobby";
     }
 }
