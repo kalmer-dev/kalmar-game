@@ -1,4 +1,4 @@
-package com.tradinggame.kalmar.controller;
+package com.tradinggame.kalmar.configuration;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

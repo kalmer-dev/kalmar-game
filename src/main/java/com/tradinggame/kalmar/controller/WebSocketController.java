@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class WebSocketController {
 
     @MessageMapping("/lobby")
-    @SendTo("/topic/lobby")
+    @SendTo("/lobby")
     public String handleLobbyMessage(String message) {
         return "Új felhasználó csatlakozott: " + message;
     }
