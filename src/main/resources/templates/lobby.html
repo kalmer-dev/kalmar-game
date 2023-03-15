@@ -1,30 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>lobby</title>
+    <title>WebSocket Lobby</title>
+    <script>var socket = new WebSocket("ws://" + window.location.host + "/game_lobby");
 
+    socket.onopen = function (event) {
+        var username = prompt("Enter your username:");
+        socket.send("/join " + username);
+    };
+
+    socket.onmessage = function (event) {
+        var messageList = document.getElementById("messageList");
+        var message = document.createElement("li");
+        message.innerText = event.data;
+        messageList.appendChild(message);
+    };
+
+    function sendMessage(event) {
+        event.preventDefault();
+        var messageInput = document.getElementById("messageInput");
+        socket.send("/send " + messageInput.value);
+        messageInput.value = "";
+    }</script>
 </head>
 <body>
-<h1>GameID, [[${game.identifier}]]</h1>
-<script>
-    var ws = new WebSocket("/lobby");
+<h1>WebSocket Lobby</h1>
 
-    ws.onopen = function(event) {
-        console.log("WebSocket kapcsolat létrehozva");
+<div>
+    <ul id="messageList">
+        <li th:each="message : ${messages}" th:text="${message}"></li>
+    </ul>
+</div>
+
+<form onsubmit="sendMessage(event)">
+    <input type="text" id="messageInput">
+    <button type="submit">Send</button>
+</form>
+
+<script th:inline="javascript">
+    var socket = new WebSocket("ws://" + window.location.host + "/lobby");
+
+    socket.onmessage = function (event) {
+        var messageList = document.getElementById("messageList");
+        var message = document.createElement("li");
+        message.innerText = event.data;
+        messageList.appendChild(message);
     };
 
-    ws.onmessage = function(event) {
-        console.log("WebSocket üzenet érkezett: " + event.data);
-        var session = event.data;
-        var listItem = document.createElement("li");
-        listItem.innerHTML = session;
-        document.getElementById("lobby-sessions").appendChild(listItem);
-    };
-
-    ws.onclose = function(event) {
-        console.log("WebSocket kapcsolat lezárult: " + event.code + " - " + event.reason);
-    };
+    function sendMessage(event) {
+        event.preventDefault();
+        var messageInput = document.getElementById("messageInput");
+        socket.send(messageInput.value);
+        messageInput.value = "";
+    }
 </script>
 </body>
 </html>
