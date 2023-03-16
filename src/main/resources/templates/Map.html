@@ -5,24 +5,22 @@
 </head>
 <body>
 
-<div id="gameboard" style="position:absolute; width:6400px; height:6400px; background:#008000; margin:30px;"></div>
+<div id="gameboard" style="position:absolute; width:640px; height:640px; background:#008000; margin:3px;"></div>
 
 <script type="text/javascript">
-    // Define the number of rows and columns in the game board
     var numRows = 64;
     var numCols = 64;
 
-    // Create the game board
     var gameBoard = document.getElementById("gameboard");
     for (var row = 1; row <= numRows; row++) {
         for (var col = 1; col <= numCols; col++) {
             var div = document.createElement("div");
             div.id = "A" + row + col;
-            div.style.left = (col - 1) * 100 + "px";
-            div.style.top = (row - 1) * 100 + "px";
+            div.style.left = (col - 1) * 10 + "px";
+            div.style.top = (row - 1) * 10 + "px";
             div.style.position = "absolute";
-            div.style.width = "100px";
-            div.style.height = "100px";
+            div.style.width = "10px";
+            div.style.height = "10px";
             if ((row + col) % 2 == 0) {
                 div.style.background = "#A52A2A";
             }
