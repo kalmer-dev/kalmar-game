@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MenuController {
@@ -22,10 +21,8 @@ public class MenuController {
     }
 
     @GetMapping("/lobby")
-    public String getLobby(@RequestParam("game") Game game, Model model){
-        System.out.println(game.getIdentifier());
-        model.addAttribute("game", game);
-        model.addAttribute("gameID", game.getIdentifier());
+    public String getLobby(Model model){
+        System.out.println(model.getAttribute("game"));
         return "lobby";
     }
 
@@ -41,7 +38,7 @@ public class MenuController {
         for (Game game:games) {
             if(game.getIdentifier().equals(inputValue)){
                 model.addAttribute("game", game);
-                return "/lobby";
+                return "redirect:/lobby";
             }
         }
         return "/connect";
@@ -52,6 +49,6 @@ public class MenuController {
         Game game = new Game();
         games.add(game);
         model.addAttribute("game", game);
-        return "/lobby";
+        return "redirect:/lobby";
     }
 }
