@@ -4,7 +4,9 @@ import com.tradinggame.kalmar.game.model.Game;
 import com.tradinggame.kalmar.game.model.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,11 +22,10 @@ public class MenuController {
         return "home";
     }
 
-    @GetMapping("/lobby")
-    public String getLobby(@RequestParam("game") Game game, Model model){
-        System.out.println(game.getIdentifier());
+    @GetMapping("/lobby/{id}")
+    public String getLobby(@PathVariable String id, Model model){
+        Game game = searchGame(id);
         model.addAttribute("game", game);
-        model.addAttribute("gameID", game.getIdentifier());
         return "lobby";
     }
 
@@ -37,21 +38,28 @@ public class MenuController {
 
     @PostMapping("/connect")
     public String compareInput(@RequestParam("inputValue") String inputValue, Model model) {
-        for (Game game:games) {
-            if(game.getIdentifier().equals(inputValue)){
-                model.addAttribute("game", game);
-                return "/lobby";
-            }
+        Game game = searchGame(inputValue);
+        if(game != null){
+            return "redirect:/lobby/" + game.getIdentifier();
         }
         return "/connect";
+
     }
 
     @PostMapping("/initialize-game")
     public String newGame(Model model){
         Game game = new Game();
         games.add(game);
-        model.addAttribute("game", game);
-        return "/lobby";
+        return "redirect:/lobby/" + game.getIdentifier();
+    }
+
+    private Game searchGame(String id){
+        for (Game game:games) {
+            if(game.getIdentifier().equals(id)){
+                return game;
+            }
+        }
+        return null;
     }
 
    @RequestMapping(value = "/game/{játékazonosító}/{játékosazonosító}", method = RequestMethod.GET)
