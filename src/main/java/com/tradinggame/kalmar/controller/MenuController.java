@@ -4,6 +4,7 @@ import com.tradinggame.kalmar.game.model.Game;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,9 +21,10 @@ public class MenuController {
         return "home";
     }
 
-    @GetMapping("/lobby")
-    public String getLobby(Model model){
-        System.out.println(model.getAttribute("game"));
+    @GetMapping("/lobby/{id}")
+    public String getLobby(@PathVariable String id, Model model){
+        Game game = searchGame(id);
+        model.addAttribute("game", game);
         return "lobby";
     }
 
@@ -35,20 +37,27 @@ public class MenuController {
 
     @PostMapping("/connect")
     public String compareInput(@RequestParam("inputValue") String inputValue, Model model) {
-        for (Game game:games) {
-            if(game.getIdentifier().equals(inputValue)){
-                model.addAttribute("game", game);
-                return "redirect:/lobby";
-            }
+        Game game = searchGame(inputValue);
+        if(game != null){
+            return "redirect:/lobby/" + game.getIdentifier();
         }
         return "/connect";
+
     }
 
     @PostMapping("/initialize-game")
     public String newGame(Model model){
         Game game = new Game();
         games.add(game);
-        model.addAttribute("game", game);
-        return "redirect:/lobby";
+        return "redirect:/lobby/" + game.getIdentifier();
+    }
+
+    private Game searchGame(String id){
+        for (Game game:games) {
+            if(game.getIdentifier().equals(id)){
+                return game;
+            }
+        }
+        return null;
     }
 }
