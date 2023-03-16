@@ -1,17 +1,32 @@
-var ws = new WebSocket("ws://localhost:8080/lobby");
+function connect(gameid) {
+    var socket = new SockJS('/lobby/' + gameid);
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/greetings', function (greeting) {
+            showGreeting(JSON.parse(greeting.body));
+        });
+    });
+}
 
-ws.onopen = function(event) {
-    console.log("WebSocket kapcsolat létrehozva");
-};
+function setConnected(connected) {
+    $("#connect").prop("disabled", connected);
+    $("#disconnect").prop("disabled", !connected);
+    if (connected) {
+        $("#conversation").show();
+    }
+    else {
+        $("#conversation").hide();
+    }
+    $("#greetings").html("");
+}
 
-ws.onmessage = function(event) {
-    console.log("WebSocket üzenet érkezett: " + event.data);
-    var session = event.data;
-    var listItem = document.createElement("li");
-    listItem.innerHTML = session;
-    document.getElementById("lobby-sessions").appendChild(listItem);
-};
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    setConnected(false);
+    console.log("Disconnected");
+}
 
-ws.onclose = function(event) {
-    console.log("WebSocket kapcsolat lezárult: " + event.code + " - " + event.reason);
-};
