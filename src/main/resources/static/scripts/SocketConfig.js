@@ -3,13 +3,7 @@ var stompClient = null;
 function connect(gameid) {
     var socket = new SockJS('/lobby/' + gameid);
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic' , function (greeting) {
-            showGreeting(JSON.parse(greeting.body));
-        });
-    });
+
 }
 
 function setConnected(connected) {
