@@ -5,14 +5,18 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/SocketConfig.js"></script>
+    <script src="/scripts/SocketConfig.js"></script>
+
 
 </head>
 <body>
-<h1>WebSocket Lobby</h1>
 
 
-
+<h1>[[${game.identifier}]]</h1>
+<script>
+    const lobbyId = document.getElementById('game').innerText;
+    connect(lobbyId)
+</script>
 
 
 </body>
