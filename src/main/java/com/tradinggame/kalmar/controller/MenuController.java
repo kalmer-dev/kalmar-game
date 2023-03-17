@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class MenuController {
     private final List<Game> games = new ArrayList<>();
+
+    @GetMapping(path = "/moves")
+    public String getMoves(){
+        return "index";
+    }
+
 
     @GetMapping(path = "/home")
     public String getHome(){
