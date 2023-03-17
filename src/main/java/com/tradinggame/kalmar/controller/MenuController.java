@@ -1,7 +1,6 @@
 package com.tradinggame.kalmar.controller;
 
 import com.tradinggame.kalmar.game.model.Game;
-import com.tradinggame.kalmar.game.model.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class MenuController {
@@ -43,6 +42,8 @@ public class MenuController {
         return "/connect";
 
     }
+
+
 
     @PostMapping("/initialize-game")
     public String newGame(Model model){
