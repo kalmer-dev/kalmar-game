@@ -8,9 +8,11 @@
 <div id="gameboard" style="position:absolute; width:640px; height:640px; background:#008000; margin:3px;"></div>
 
 <script type="text/javascript">
+    // Define the number of rows and columns in the game board
     var numRows = 64;
     var numCols = 64;
 
+    // Create the game board
     var gameBoard = document.getElementById("gameboard");
     for (var row = 1; row <= numRows; row++) {
         for (var col = 1; col <= numCols; col++) {

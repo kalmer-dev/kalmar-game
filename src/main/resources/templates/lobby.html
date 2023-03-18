@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>lobby</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/scripts/SocketConfig.js"></script>
+    <title>WebSocket Lobby</title>
 </head>
 <body>
-<h1>GameID, [[${game.identifier}]]!</h1>
+<script>connect('[[${game.identifier}]]')</script>
+<h1>[[${game.identifier}]]</h1>
+<button id="start-game-btn">Start Game</button>
+
+<script>
+    document.getElementById("start-game-btn").addEventListener("click", function() {
+        window.location.href = "/game"; // átirányítás a game.html template-re
+    });
+</script>
+
 </body>
 </html>
