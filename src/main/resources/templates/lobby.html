@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <!--    <script src="SocketConfig.js"></script>-->
-    <script>
-        var stompClient = null;
-
-        function connect(gameid) {
-            var socket = new SockJS('/lobby/' + gameid);
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function (frame) {
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/lobby/' + gameid, function (response) {
-                    console.log("Received message: " + response.body);
-                });
-            });
-        }
-    </script>
+    <script src="/scripts/SocketConfig.js"></script>
     <title>WebSocket Lobby</title>
 </head>
 <body>
+<script>connect('[[${game.identifier}]]')</script>
+<h1>[[${game.identifier}]]</h1>
+<button id="start-game-btn">Start Game</button>
 
-
-<button id="connectBtn" th:attr="onclick=|connect('${game.identifier}')|">Connect</button>
-
+<script>
+    document.getElementById("start-game-btn").addEventListener("click", function() {
+        window.location.href = "/game"; // átirányítás a game.html template-re
+    });
+</script>
 
 </body>
 </html>
