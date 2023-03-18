@@ -19,6 +19,12 @@ public class MenuController {
         return "home";
     }
 
+    @GetMapping("/game/{id}")
+    public String getGame(@PathVariable String id, Model model){
+        model.addAttribute("game", searchGame(id));
+        return "Map";
+    }
+
     @GetMapping("/lobby/{id}")
     public String getLobby(@PathVariable String id, Model model){
         Game game = searchGame(id);

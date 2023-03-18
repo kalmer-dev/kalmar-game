@@ -4,23 +4,28 @@ function connect(gameid) {
     var socket = new SockJS('/game_lobby');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/' + gameid, function (greeting) {
-            showGreeting(JSON.parse(greeting.body));
+        stompClient.subscribe('/topic/' + gameid, function (message) {
+            var members = JSON.parse(message.body);
+            displayMembers(members);
         });
+        sendName(gameid); // A sendName függvény hívása itt történik.
     });
-    sendName();
 }
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
+function sendName(gameid) {
+    const userName = prompt("Kérem, adja meg a nevét:");
+    stompClient.send("/app/join/" + gameid, {}, JSON.stringify({
+        'name': userName,
+        'id': gameid
+    }));
+}
+
+function displayMembers(members) {
+    var userList = document.getElementById("user-list");
+    userList.innerHTML = "";
+    members.forEach(function (member) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(member));
+        userList.appendChild(li);
+    });
 }
