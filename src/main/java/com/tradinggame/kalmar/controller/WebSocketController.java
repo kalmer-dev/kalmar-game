@@ -24,7 +24,7 @@ public class WebSocketController {
 
     @MessageMapping("/join/{id}")
     @SendTo("/topic/{id}")
-    public List<String> joinGame( NameId message) throws JsonProcessingException {
+    public List<String> joinGame(NameId message) {
 
         List<String> members = gameLobby.get(message.getId());
         if(members == null){
@@ -36,11 +36,10 @@ public class WebSocketController {
     }
 
     @MessageMapping("/start-game/{id}")
-    @SendTo("topic/start-game/{id}")
-    public String startGame(@PathVariable String id){
-        return id;
+    @SendTo("/topic/start-game/{id}")
+    public String startGame(@Payload NameId message){
+        return "";
     }
-
 
 }
 @AllArgsConstructor

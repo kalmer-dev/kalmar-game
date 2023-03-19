@@ -1,5 +1,6 @@
 var stompClient = null;
 var gameID;
+var userName; // felhasználó neve
 
 function connect(gameid) {
     var socket = new SockJS('/game_lobby');
@@ -19,7 +20,7 @@ function connect(gameid) {
 }
 
 function sendName(gameid) {
-    const userName = prompt("Kérem, adja meg a nevét:");
+    userName = prompt("Kérem, adja meg a nevét:");
     stompClient.send("/app/join/" + gameid, {}, JSON.stringify({
         'name': userName,
         'id': gameid
@@ -37,5 +38,8 @@ function displayMembers(members) {
 }
 
 function startGame() {
-    stompClient.send('/app/start-game/' + gameID, {}, {});
+    stompClient.send('/app/start-game/' + gameID, {},JSON.stringify({
+        'name': userName, // felhasználó neve
+        'id': gameID
+    }));
 }
