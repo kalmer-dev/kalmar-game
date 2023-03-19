@@ -1,0 +1,29 @@
+.game-container {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    background: #008000;
+    margin: 3px;
+}
+
+.game-tile {
+    margin-right: 16px;
+}
+
+.game-tile {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.game-container table {
+    border-collapse: collapse;
+}
+
+.game-container td {
+    padding: 0;
+}
+
+.game-container tr {
+    margin: 0;
+}

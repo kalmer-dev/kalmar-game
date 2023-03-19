@@ -35,6 +35,12 @@ public class WebSocketController {
         return members;
     }
 
+    @MessageMapping("/start-game/{id}")
+    @SendTo("topic/start-game/{id}")
+    public String startGame(@PathVariable String id){
+        return id;
+    }
+
 
 }
 @AllArgsConstructor

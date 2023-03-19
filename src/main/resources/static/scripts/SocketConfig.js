@@ -1,12 +1,18 @@
 var stompClient = null;
+var gameID;
 
 function connect(gameid) {
     var socket = new SockJS('/game_lobby');
+    gameID = gameid;
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/' + gameid, function (message) {
             var members = JSON.parse(message.body);
             displayMembers(members);
+        });
+        stompClient.subscribe('/topic/start-game/' + gameID, function (message) {
+            // Load new template when game is started
+            window.location.href = '/game/' + gameID;
         });
         sendName(gameid); // A sendName függvény hívása itt történik.
     });
@@ -28,4 +34,8 @@ function displayMembers(members) {
         li.appendChild(document.createTextNode(member));
         userList.appendChild(li);
     });
+}
+
+function startGame() {
+    stompClient.send('/app/start-game/' + gameID, {}, {});
 }

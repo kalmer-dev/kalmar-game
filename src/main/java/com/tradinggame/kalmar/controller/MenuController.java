@@ -21,7 +21,8 @@ public class MenuController {
 
     @GetMapping("/game/{id}")
     public String getGame(@PathVariable String id, Model model){
-        model.addAttribute("game", searchGame(id));
+        Game game = searchGame(id);
+        model.addAttribute("game", game);
         return "Map";
     }
 

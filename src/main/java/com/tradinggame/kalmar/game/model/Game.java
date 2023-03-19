@@ -15,5 +15,5 @@ public class Game {
     private Player player3;
     private Player player4;
     private Player player5;
-    private Map map;
+    private Map map = new Map();
 }
