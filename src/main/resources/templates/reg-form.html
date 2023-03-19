@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+</head>
+<body>
+<h1>Registration</h1>
+
+<form action="/registration" data-th-action="@{/registration}" data-th-object="${newUser}" method="post">
+  <label for="contactName">neved:</label>
+  <input id="contactName" name="name" data-th-field="*{name}" type="text" required>
+  <p style="color: red;"
+     th:if="${#fields.hasErrors('name')}"
+     th:errors="*{name}"></p>
+
+
+  <label for="contactPassword">Jelszó:</label>
+  <input id="contactPassword" name="password" data-th-field="*{password}" type="password" required>
+  <p style="color: red;"
+     th:if="${#fields.hasErrors('password')}"
+     th:errors="*{name}"></p>
+
+
+
+
+
+  <input id="saveButton" type="submit" value="Regisztracio">
+</form>
+
+
+<a href="/home" data-th-href="@{/home}">
+  <button>Vissza</button>
+</a>
+
+</body>
+</html>
