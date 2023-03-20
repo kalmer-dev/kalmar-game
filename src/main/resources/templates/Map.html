@@ -11,7 +11,7 @@
     <table>
         <tbody>
         <tr th:each="row, rowIdx : ${game.map.tiles}">
-            <td th:text="${rowIdx.index}"></td>
+<!--            <td th:text="${rowIdx.index}"></td>-->
             <span th:each="element, colIdx : ${row}">
                 <td>
                     <img th:src="@{${element.image}}"/>
