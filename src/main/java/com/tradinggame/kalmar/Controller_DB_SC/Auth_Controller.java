@@ -2,7 +2,7 @@ package com.tradinggame.kalmar.Controller_DB_SC;
 
 import com.tradinggame.kalmar.Model_Database.Game_User;
 import com.tradinggame.kalmar.Model_Database.User_Repository;
-import com.tradinggame.kalmar.Security_model.UserService;
+import com.tradinggame.kalmar.security_model.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

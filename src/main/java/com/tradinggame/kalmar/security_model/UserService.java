@@ -1,4 +1,4 @@
-package com.tradinggame.kalmar.Security_model;
+package com.tradinggame.kalmar.security_model;
 
 import com.tradinggame.kalmar.Model_Database.User_Repository;
 import org.springframework.context.annotation.Bean;
