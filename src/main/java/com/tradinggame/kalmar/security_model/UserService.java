@@ -32,8 +32,8 @@ public class UserService implements UserDetailsService {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers( "/", "/testing", "/registration")
-                .permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/testing")
+                .requestMatchers( "/", "/testing", "/registration", "home")
+                .permitAll().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/home")
                 .permitAll()
                 .and()
                 .logout()
