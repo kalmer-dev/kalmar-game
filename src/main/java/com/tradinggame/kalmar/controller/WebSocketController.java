@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Controller
 public class WebSocketController {
-    ObjectMapper objectMapper = new ObjectMapper();
+
     Map<String, List<String>> gameLobby = new HashMap<>();
 
     @MessageMapping("/join/{id}")
