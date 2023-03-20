@@ -1,6 +1,5 @@
 package com.tradinggame.kalmar.Security_model;
 
-
 import com.tradinggame.kalmar.Model_Database.User_Repository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
