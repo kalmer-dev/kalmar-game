@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo home page</title>
+</head>
+<body>
+<h1>Home Page</h1>
+
+<div data-sec-authorize="isAuthenticated()">
+    <h2>Hello <span data-sec-authentication="name"></span></h2>
+
+    <a href="/logout">
+        <p>Logout</p>
+    </a>
+</div>
+<div data-sec-authorize="isAnonymous()">
+    <a href="/login">
+        <p>Login</p>
+    </a>
+    <a href="/registration">
+        <p>Regisztracio</p>
+    </a>
+</div>
+</body>
+</html>
