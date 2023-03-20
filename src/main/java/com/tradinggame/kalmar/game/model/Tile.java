@@ -14,7 +14,6 @@ public class Tile {
             case 0 -> {
                 this.type = Type.GRASS;
                 this.image = "/OneColorBackgrounds/green.png";
-
             }
             case 1 -> {
                 this.type = Type.TRADING_POST;
