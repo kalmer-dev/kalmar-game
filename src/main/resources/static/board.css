@@ -5,6 +5,10 @@
     background: #008000;
     margin: 3px;
 }
+img{
+    display:block;
+}
+
 
 .game-tile {
     margin-right: 16px;
