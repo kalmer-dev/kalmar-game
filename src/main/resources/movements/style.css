@@ -1,10 +1,4 @@
-game{
-    height: 500px;
-    width: 500px;
-    outline: 2px solid black;
-    position: relative;
-    background-color: lightpink;
-}
+
 
 #character{
     height: 200px;

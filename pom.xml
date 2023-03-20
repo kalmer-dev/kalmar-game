@@ -75,6 +75,7 @@
             <artifactId>jquery</artifactId>
             <version>3.6.3</version>
         </dependency>
+
         <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>

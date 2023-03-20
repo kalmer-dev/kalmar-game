@@ -3,14 +3,12 @@ package com.tradinggame.kalmar.controller;
 import com.tradinggame.kalmar.game.model.Game;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import java.util.ArrayList;
+
 
 @Controller
 public class MenuController {
@@ -19,6 +17,13 @@ public class MenuController {
     @GetMapping(path = "/home")
     public String getHome(){
         return "home";
+    }
+
+    @GetMapping("/game/{id}")
+    public String getGame(@PathVariable String id, Model model){
+        Game game = searchGame(id);
+        model.addAttribute("game", game);
+        return "Map";
     }
 
     @GetMapping("/lobby/{id}")
@@ -45,6 +50,8 @@ public class MenuController {
 
     }
 
+
+
     @PostMapping("/initialize-game")
     public String newGame(Model model){
         Game game = new Game();
@@ -60,4 +67,10 @@ public class MenuController {
         }
         return null;
     }
+
+   @RequestMapping(value = "/game/{játékazonosító}/{játékosazonosító}", method = RequestMethod.GET)
+        public String game(@PathVariable("játékazonosító") String gameId,
+                           @PathVariable("játékosazonosító") String playerId) {
+        return "Map";
+   }
 }

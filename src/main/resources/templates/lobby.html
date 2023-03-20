@@ -8,15 +8,15 @@
     <title>WebSocket Lobby</title>
 </head>
 <body>
-<script>connect('[[${game.identifier}]]')</script>
 <h1>[[${game.identifier}]]</h1>
-<button id="start-game-btn">Start Game</button>
 
-<script>
-    document.getElementById("start-game-btn").addEventListener("click", function() {
-        window.location.href = "/game"; // átirányítás a game.html template-re
-    });
-</script>
+<div>
+    <p>Connected users:</p>
+    <ul id="user-list"></ul>
+</div>
+<button id="start-game-btn" onclick="startGame()">Start Game</button>
+<script>connect('[[${game.identifier}]]')</script>
 
 </body>
+
 </html>
