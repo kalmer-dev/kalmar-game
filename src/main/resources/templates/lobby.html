@@ -9,14 +9,16 @@
 </head>
 <body>
 <h1>[[${game.identifier}]]</h1>
-
+<h2>Hello <span data-sec-authentication="name"></span></h2>
 <div>
     <p>Connected users:</p>
     <ul id="user-list"></ul>
 </div>
 <button id="start-game-btn" onclick="startGame()">Start Game</button>
 <script>connect('[[${game.identifier}]]')</script>
-
+<a href="/home">
+    <p>Home</p>
+</a>
 </body>
 
 </html>

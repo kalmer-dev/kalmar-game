@@ -32,11 +32,12 @@ public class UserService implements UserDetailsService {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers( "/", "/testing", "/registration","/Map","/lobby","/index","/home","/connect")
+                .requestMatchers("/home","/connect","/initialize-game","/lobby").authenticated()
+                .requestMatchers( "/", "/testing", "/registration","/Map","/index")
                 .permitAll().anyRequest().authenticated().and().formLogin()
-                .defaultSuccessUrl("/testing").defaultSuccessUrl("/Map").defaultSuccessUrl("/lobby").defaultSuccessUrl("/index").defaultSuccessUrl("/connect")
+                .defaultSuccessUrl("/home")
                 .permitAll()
                 .and()
                 .logout()

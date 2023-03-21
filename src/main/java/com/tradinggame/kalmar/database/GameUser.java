@@ -31,6 +31,7 @@ public class GameUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+
         return Collections.singleton(authority);
     }
 
