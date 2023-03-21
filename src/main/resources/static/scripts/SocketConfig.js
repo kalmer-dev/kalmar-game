@@ -5,6 +5,7 @@ var userName; // felhasználó neve
 function connect(gameid) {
     var socket = new SockJS('/game_lobby');
     gameID = gameid;
+    userName = name;
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/' + gameid, function (message) {
@@ -20,7 +21,7 @@ function connect(gameid) {
 }
 
 function sendName(gameid) {
-    userName = prompt("Kérem, adja meg a nevét:");
+
     stompClient.send("/app/join/" + gameid, {}, JSON.stringify({
         'name': userName,
         'id': gameid
