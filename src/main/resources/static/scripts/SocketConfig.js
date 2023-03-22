@@ -2,14 +2,11 @@ var stompClient = null;
 var gameID;
 var userName; // felhasználó neve
 
-function connect(gameid) {
-    var context = window.spring_security_context;
-    if (context && context.authentication && context.authentication.principal) {
-        userName = context.authentication.principal.username;
-    }
+function connect(gameid, name) {
+    userName = name;
+
     var socket = new SockJS('/game_lobby');
     gameID = gameid;
-    userName = name;
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/' + gameid, function (message) {
@@ -37,7 +34,7 @@ function displayMembers(members) {
     userList.innerHTML = "";
     members.forEach(function (member) {
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(member));
+        li.textContent = member;
         userList.appendChild(li);
     });
 }

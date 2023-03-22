@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 import java.util.ArrayList;
@@ -27,9 +28,10 @@ public class MenuController {
     }
 
     @GetMapping("/lobby/{id}")
-    public String getLobby(@PathVariable String id, Model model){
+    public String getLobby(@PathVariable String id, Model model, Principal principal){
         Game game = searchGame(id);
         model.addAttribute("game", game);
+        model.addAttribute("userName", principal.getName());
         return "lobby";
     }
 

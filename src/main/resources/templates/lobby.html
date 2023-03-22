@@ -12,13 +12,19 @@
 <h2>Hello <span data-sec-authentication="name"></span></h2>
 <div>
     <p>Connected users:</p>
-    <ul id="user-list"></ul>
+    <ul id="user-list">
+        <li>Matyi</li>
+    </ul>
 </div>
 <button id="start-game-btn" onclick="startGame()">Start Game</button>
-<script>connect('[[${game.identifier}]]')</script>
 <a href="/home">
     <p>Home</p>
 </a>
+
+<!--Ez kapcsolodik a szerverhez az oldal betoltese utan
+ es az adott jatekhoz, websocketen keresztul-->
+<script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
+
 </body>
 
 </html>
