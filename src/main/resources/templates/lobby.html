@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>[[${game.identifier}]]</h1>
-<h2>Hello <span data-sec-authentication="name"></span></h2>
+<span id="userName" data-sec-authentication="name"></span>
 <div>
     <p>Connected users:</p>
     <ul id="user-list">
@@ -17,6 +17,7 @@
     </ul>
 </div>
 <button id="start-game-btn" onclick="startGame()">Start Game</button>
+<script>connect('[[${game.identifier}]]', document.getElementById("userName"))</script>
 <a href="/home">
     <p>Home</p>
 </a>

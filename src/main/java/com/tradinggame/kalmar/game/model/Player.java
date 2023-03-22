@@ -8,4 +8,10 @@ public class Player {
     private Tile[][] sawFromMap;
     private int coordinateX;
     private int coordinateY;
+
+    public Player(String name) {
+        this.name = name;
+        coordinateX = 0;
+        coordinateY = 0;
+    }
 }

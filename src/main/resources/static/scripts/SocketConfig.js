@@ -7,11 +7,12 @@ function connect(gameid, name) {
 
     var socket = new SockJS('/game_lobby');
     gameID = gameid;
+    userName = name;
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/' + gameid, function (message) {
-            var members = JSON.parse(message.body);
-            displayMembers(members);
+            var players = JSON.parse(message.body);
+            displayMembers(players);
         });
         stompClient.subscribe('/topic/start-game/' + gameID, function (message) {
             // Load new template when game is started
@@ -34,7 +35,7 @@ function displayMembers(members) {
     userList.innerHTML = "";
     members.forEach(function (member) {
         var li = document.createElement("li");
-        li.textContent = member;
+        li.appendChild(document.createTextNode(member));
         userList.appendChild(li);
     });
 }
