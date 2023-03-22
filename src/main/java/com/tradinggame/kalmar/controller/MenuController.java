@@ -20,13 +20,6 @@ public class MenuController {
     }
 
 
-    @GetMapping("/lobby/{id}")
-    public String getLobby(@PathVariable String id, Model model, Principal principal){
-        Game game = searchGame(id);
-        model.addAttribute("game", game);
-        model.addAttribute("userName", principal.getName());
-        return "lobby";
-    }
 
     @GetMapping("/connect")
     public String connectPage(){

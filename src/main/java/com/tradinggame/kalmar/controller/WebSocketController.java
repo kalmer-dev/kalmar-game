@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,14 +60,14 @@ public class WebSocketController {
     }
 
     @GetMapping("/lobby/{id}")
-    public String getLobby(@PathVariable String id, Model model) {
+    public String getLobby(@PathVariable String id, Model model, Principal principal) {
         Game game = searchGame(id);
-
         model.addAttribute("game", game);
+        model.addAttribute("userName", principal.getName());
         return "lobby";
     }
 
-    @PostMapping("/initialize-game")
+        @PostMapping("/initialize-game")
     public String newGame(Model model) {
         Game game = new Game();
         games.add(game);

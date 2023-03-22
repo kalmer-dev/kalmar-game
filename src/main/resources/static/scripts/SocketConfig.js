@@ -30,12 +30,12 @@ function sendName(gameid) {
     }));
 }
 
-function displayMembers(members) {
+function displayMembers(players) {
     var userList = document.getElementById("user-list");
     userList.innerHTML = "";
-    members.forEach(function (member) {
+    players.forEach(function (player) {
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(member));
+        li.appendChild(document.createTextNode(player.name));
         userList.appendChild(li);
     });
 }
