@@ -1,14 +1,18 @@
 .game-container {
-    position: absolute;
-    width: 640px;
-    height: 640px;
-    background: #008000;
-    margin: 3px;
+    position: relative;
+    left: 50%;
+    top: 50%;
 }
 img{
     display:block;
 }
 
+.player {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .game-tile {
     margin-right: 16px;
@@ -22,12 +26,17 @@ img{
 
 .game-container table {
     border-collapse: collapse;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .game-container td {
     padding: 0;
+
 }
 
 .game-container tr {
     margin: 0;
+
 }

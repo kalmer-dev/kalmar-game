@@ -30,6 +30,14 @@ import java.util.Map;
 public class WebSocketController {
     List<Game> games = new ArrayList<>();
 
+    @MessageMapping("/game/refresh/{id}")
+    @SendTo("/game/{id}")
+    public Game movePlayer(@PathVariable String id, NameId message) {
+        Game game = searchGame(id);
+       // game.updatePlayer(player);
+        return game;
+    }
+
     @MessageMapping("/join/{id}")
     @SendTo("/topic/{id}")
     public List<Player> joinGame(NameId message) {
@@ -39,7 +47,6 @@ public class WebSocketController {
         game.putPlayer(new Player(message.name));
         return game.getPlayers();
     }
-
 
 
     @PostMapping("/connect")
@@ -53,24 +60,27 @@ public class WebSocketController {
     }
 
     @GetMapping("/game/{id}")
-    public String getGame(@PathVariable String id, Model model) {
+    public String getGame(@PathVariable String id, Model model, Principal principal) {
         Game game = searchGame(id);
         model.addAttribute("game", game);
+        model.addAttribute("userName", principal.getName());
         return "Map";
     }
 
     @GetMapping("/lobby/{id}")
     public String getLobby(@PathVariable String id, Model model, Principal principal) {
         Game game = searchGame(id);
+        game.putPlayer(new Player(principal.getName()));
         model.addAttribute("game", game);
         model.addAttribute("userName", principal.getName());
         return "lobby";
     }
 
-        @PostMapping("/initialize-game")
+    @PostMapping("/initialize-game")
     public String newGame(Model model) {
         Game game = new Game();
         games.add(game);
+        model.addAttribute("game", game);
         return "redirect:/lobby/" + game.getIdentifier();
     }
 

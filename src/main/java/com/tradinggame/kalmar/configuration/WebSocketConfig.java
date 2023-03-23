@@ -14,14 +14,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         //letrehoz egy endpointot
-        registry.addEndpoint("/game_lobby")
+        registry.addEndpoint("/game_lobby", "/game")
                 .withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         //ez allitja be h a /topic utvonalra fel lehet iratkozni, itt kapja meg az uzeneteket
-        registry.enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/topic", "game");
         //ez allitja be h milyen utvonal prefixel kezdodik ahova tudsz kuldeni
         registry.setApplicationDestinationPrefixes("/app");
     }

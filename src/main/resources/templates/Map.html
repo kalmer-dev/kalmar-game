@@ -11,51 +11,47 @@
 
 </head>
 <body>
-
-<div class="game-container">
-    <table>
-        <tbody>
-        <tr th:each="row, rowIdx : ${game.map.tiles}">
+<table class="game-container">
+    <tbody>
+    <tr th:each="row, rowIdx : ${game.map.tiles}">
             <span th:each="element, colIdx : ${row}">
                 <td>
-                    <img th:src="@{${element.image}}"/>
-                </td>
+    <div class="tile">
+        <img th:src="@{${element.image}}"/>
+        <div th:each="player : ${game.players}"
+             th:if="${player.name} == ${userName}">
+            <img src="/OneColorBackgrounds/black.png" class="player"
+                 style="position: absolute; left: 50%; top: 50%;"/>
+        </div>
+    </div>
+</td>
+
             </span>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    </tr>
+    </tbody>
+</table>
 
+<!--<div th:each="player : ${game.players}">-->
+<!--    <img src="/OneColorBackgrounds/cream.png" class="player"/>-->
+<!--</div>-->
 
+<!--<div class="game-container">-->
+<!--    <table>-->
+<!--        <tbody>-->
+<!--        <tr th:each="row, rowIdx : ${game.map.tiles}">-->
+<!--            <span th:each="element, colIdx : ${row}">-->
+<!--                <td>-->
+<!--                    <img th:src="@{${element.image}}"/>-->
 
+<!--                </td>-->
+<!--            </span>-->
+<!--        </tr>-->
 
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
 
-
-
-
-<!--<script type="text/javascript">-->
-<!--    // Define the number of rows and columns in the game board-->
-<!--    var numRows = 64;-->
-<!--    var numCols = 64;-->
-
-<!--    // Create the game board-->
-<!--    var gameBoard = document.getElementById("gameboard");-->
-<!--    for (var row = 1; row <= numRows; row++) {-->
-<!--        for (var col = 1; col <= numCols; col++) {-->
-<!--            var div = document.createElement("div");-->
-<!--            div.id = "A" + row + col;-->
-<!--            div.style.left = (col - 1) * 10 + "px";-->
-<!--            div.style.top = (row - 1) * 10 + "px";-->
-<!--            div.style.position = "absolute";-->
-<!--            div.style.width = "10px";-->
-<!--            div.style.height = "10px";-->
-<!--            if ((row + col) % 2 == 0) {-->
-<!--                div.style.background = "#A52A2A";-->
-<!--            }-->
-<!--            gameBoard.appendChild(div);-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+<script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
 
 </body>
 </html>

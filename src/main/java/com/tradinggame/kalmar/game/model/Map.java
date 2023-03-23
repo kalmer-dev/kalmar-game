@@ -5,7 +5,7 @@ import lombok.Getter;
 
 public class Map {
 
-    private final int[][] mapAsMatrix = new int[][]{{0, 0, 0, 1}, {0, 1, 0, 0}, {0, 0, 0, 0}, {1, 0, 0, 0}};
+    private final int[][] mapAsMatrix = new int[][]{{0, 0, 0, 1,0}, {0, 1, 0, 0,0}, {0, 0, 0, 0,0}, {1, 0, 0, 0,0},{1, 0, 0, 0,0}};
     @Getter
     private  Tile[][] tiles;
 

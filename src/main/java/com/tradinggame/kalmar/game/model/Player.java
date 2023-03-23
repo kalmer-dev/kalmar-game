@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class Player {
     private String name;
-    private Tile[][] sawFromMap;
     private int coordinateX;
     private int coordinateY;
 
