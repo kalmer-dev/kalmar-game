@@ -49,7 +49,6 @@ function getPlayerByName(players) {
 
 
 document.addEventListener("keydown", (event) => { //Billentyűzet hallgoató
-   console.log(player)
     switch (event.key) {
         case "ArrowUp":     //FEL GOMB
             player.coordinateY -= 10;
