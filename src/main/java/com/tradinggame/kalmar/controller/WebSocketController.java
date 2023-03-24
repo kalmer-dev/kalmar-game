@@ -31,10 +31,10 @@ public class WebSocketController {
     List<Game> games = new ArrayList<>();
 
     @MessageMapping("/game/refresh/{id}")
-    @SendTo("/game/{id}")
-    public Game movePlayer(@PathVariable String id, NameId message) {
+    @SendTo("/game/update/{id}")
+    public Game movePlayer(@PathVariable String id, Player player) {
         Game game = searchGame(id);
-       // game.updatePlayer(player);
+        game.updatePlayer(player);
         return game;
     }
 
@@ -64,6 +64,7 @@ public class WebSocketController {
         Game game = searchGame(id);
         model.addAttribute("game", game);
         model.addAttribute("userName", principal.getName());
+        model.addAttribute("players", game.getPlayers());
         return "Map";
     }
 

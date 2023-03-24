@@ -13,44 +13,24 @@
 <body>
 <table class="game-container">
     <tbody>
-    <tr th:each="row, rowIdx : ${game.map.tiles}">
+        <tr th:each="row, rowIdx : ${game.map.tiles}">
             <span th:each="element, colIdx : ${row}">
                 <td>
-    <div class="tile">
-        <img th:src="@{${element.image}}"/>
-        <div th:each="player : ${game.players}"
-             th:if="${player.name} == ${userName}">
-            <img src="/OneColorBackgrounds/black.png" class="player"
-                 style="position: absolute; left: 50%; top: 50%;"/>
-        </div>
-    </div>
-</td>
-
+                    <div class="tile">
+                        <img th:src="@{${element.image}}"/>
+                            <div th:each="player : ${game.players}"
+                                 th:if="${player.name} == ${userName}">
+                                <img src="/OneColorBackgrounds/black.png" class="player"
+                                style="position: absolute; left: 50%; top: 50%;"/>
+                            </div>
+                    </div>
+                </td>
             </span>
-    </tr>
+        </tr>
     </tbody>
 </table>
 
-<!--<div th:each="player : ${game.players}">-->
-<!--    <img src="/OneColorBackgrounds/cream.png" class="player"/>-->
-<!--</div>-->
-
-<!--<div class="game-container">-->
-<!--    <table>-->
-<!--        <tbody>-->
-<!--        <tr th:each="row, rowIdx : ${game.map.tiles}">-->
-<!--            <span th:each="element, colIdx : ${row}">-->
-<!--                <td>-->
-<!--                    <img th:src="@{${element.image}}"/>-->
-
-<!--                </td>-->
-<!--            </span>-->
-<!--        </tr>-->
-
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</div>-->
-
+<script>getPlayerByName('${players}')</script>
 <script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
 
 </body>
