@@ -3,6 +3,8 @@ package com.tradinggame.kalmar.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.mysql.cj.xdevapi.JsonArray;
 import com.tradinggame.kalmar.game.model.Game;
 import com.tradinggame.kalmar.game.model.Player;
 import lombok.AllArgsConstructor;
@@ -31,11 +33,11 @@ public class WebSocketController {
     List<Game> games = new ArrayList<>();
 
     @MessageMapping("/game/refresh/{id}")
-    @SendTo("/game/update/{id}")
-    public Game movePlayer(@PathVariable String id, Player player) {
+    @SendTo("/topic/game/update/{id}")
+    public List<Player> movePlayer(@PathVariable String id, Player player) {
         Game game = searchGame(id);
         game.updatePlayer(player);
-        return game;
+        return game.getPlayers();
     }
 
     @MessageMapping("/join/{id}")
@@ -64,8 +66,16 @@ public class WebSocketController {
         Game game = searchGame(id);
         model.addAttribute("game", game);
         model.addAttribute("userName", principal.getName());
-        model.addAttribute("players", game.getPlayers());
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(game.getPlayers()));
+        model.addAttribute("players", gson.toJson(game.getPlayers()));
         return "Map";
+    }
+    @MessageMapping("/boot/{id}")
+    @SendTo("/topic/update/{id}")
+    public List<Player> bootGame(NameId message){
+        System.out.println("anyádért nem működsz");
+        return searchGame(message.getId()).getPlayers();
     }
 
     @GetMapping("/lobby/{id}")

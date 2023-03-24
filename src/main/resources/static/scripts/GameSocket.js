@@ -12,22 +12,31 @@ function connect(gameid, name) {
 
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/game/update/' + gameid, function (message) {
-            let game = JSON.parse(message.body);
-
+        stompClient.subscribe('/topic/update/' + gameid, function (message) {
+            let players = JSON.parse(message.body);
+            getPlayerByName(players)
         });
+        waitstatus();
     });
-    sendStatus()
+
 }
 
+function waitstatus() {
+    stompClient.send("/app/boot/" + gameID, {},JSON.stringify({
+        name: userName,
+        id: gameID
+
+    }));
+}
 function sendStatus(){
-    stompClient.send("/game/refresh/" + gameID, {}, JSON.stringify({
+    stompClient.send("/app/game/refresh/" + gameID, {}, JSON.stringify({
         player: player
     }));
 
 }
 
 function getPlayerByName(players) {
+    console.log(players);
 
     for (const currPlayer of players) {
         if (currPlayer.name.toString() === userName.toString()) {
