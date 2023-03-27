@@ -1,5 +1,5 @@
-img{
-    display:block;
+img {
+    display: block;
 }
 
 .player {
@@ -35,9 +35,17 @@ img{
     margin: 0;
 
 }
+
 .game-container {
     position: absolute;
     left: 50%;
     top: 50%;
-    clip-path: circle(50px at center);
+    clip-path: circle(100px at calc(50% + var(--mycharacter-cordinateX) + ${player.viewX}) calc(50% + var(--mycharacter-cordinateY) + ${player.viewY}));
+}
+
+#mycharacter {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
 }

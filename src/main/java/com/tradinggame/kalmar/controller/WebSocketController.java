@@ -32,12 +32,15 @@ import java.util.Map;
 public class WebSocketController {
     List<Game> games = new ArrayList<>();
 
-    @MessageMapping("/game/refresh/{id}")
-    @SendTo("/topic/game/update/{id}")
-    public List<Player> movePlayer(@PathVariable String id, Player player) {
-        Game game = searchGame(id);
+    @MessageMapping("/refresh/{id}")
+    @SendTo("/topic/update/{id}")
+    public Game movePlayer(PlayerMoveInfo playerMoveInfo) {
+        Game game = searchGame(playerMoveInfo.id);
+        Player player = new Player(playerMoveInfo.playerName);
+        player.setCoordinateX(playerMoveInfo.x);
+        player.setCoordinateY(playerMoveInfo.y);
         game.updatePlayer(player);
-        return game.getPlayers();
+        return game;
     }
 
     @MessageMapping("/join/{id}")
@@ -73,9 +76,8 @@ public class WebSocketController {
     }
     @MessageMapping("/boot/{id}")
     @SendTo("/topic/update/{id}")
-    public List<Player> bootGame(NameId message){
-        System.out.println("anyádért nem működsz");
-        return searchGame(message.getId()).getPlayers();
+    public Game bootGame(NameId message){
+        return searchGame(message.getId());
     }
 
     @GetMapping("/lobby/{id}")
@@ -117,4 +119,13 @@ public class WebSocketController {
 class NameId {
     String id;
     String name;
+}
+
+@AllArgsConstructor
+@Data
+class PlayerMoveInfo{
+    String id;
+    String playerName;
+    int x;
+    int y;
 }

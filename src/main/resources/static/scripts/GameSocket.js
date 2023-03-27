@@ -2,6 +2,7 @@ let stompClient = null;
 let gameID;
 let userName; // felhasználó neve
 let player;
+let game;
 
 function connect(gameid, name) {
 
@@ -13,7 +14,8 @@ function connect(gameid, name) {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/update/' + gameid, function (message) {
-            let players = JSON.parse(message.body);
+            game = JSON.parse(message.body);
+            let players = game.players;
             getPlayerByName(players)
         });
         waitstatus();
@@ -22,52 +24,67 @@ function connect(gameid, name) {
 }
 
 function waitstatus() {
-    stompClient.send("/app/boot/" + gameID, {},JSON.stringify({
+    stompClient.send("/app/boot/" + gameID, {}, JSON.stringify({
         name: userName,
         id: gameID
 
     }));
 }
-function sendStatus(){
-    stompClient.send("/app/game/refresh/" + gameID, {}, JSON.stringify({
-        player: player
+
+function sendStatus() {
+    stompClient.send("/app/refresh/" + gameID, {}, JSON.stringify({
+        id: gameID,
+        playerName: player.name,
+        x: player.coordinateX,
+        y: player.coordinateY
     }));
 
 }
 
 function getPlayerByName(players) {
-    console.log(players);
-
+    let otherPlayers = [];
     for (const currPlayer of players) {
         if (currPlayer.name.toString() === userName.toString()) {
             player = currPlayer;
-            console.log(player);
+        } else {
+            otherPlayers.push(currPlayer);
         }
     }
+    addOtherPlayersToPage(otherPlayers)
+}
+
+function addOtherPlayersToPage(otherPlayers) {
+
 }
 
 
-
-document.addEventListener("keydown", (event) => { //Billentyűzet hallgoató
+document.addEventListener("keydown", (event) => {
     switch (event.key) {
-        case "ArrowUp":     //FEL GOMB
+        case "ArrowUp":
             player.coordinateY -= 10;
-            sendStatus()
+            player.viewY += 10;
             break;
-        case "ArrowDown":    //LE GOMB
+        case "ArrowDown":
             player.coordinateY += 10;
-            sendStatus()
+            player.viewY -= 10;
             break;
-        case "ArrowLeft":    //BAL GOMB
+        case "ArrowLeft":
             player.coordinateX -= 10;
-            sendStatus()
+            player.viewX += 10;
             break;
-        case "ArrowRight":    //JOBB GOMB
+        case "ArrowRight":
             player.coordinateX += 10;
-            sendStatus()
+            player.viewX -= 10;
             break;
         default:
             return;
     }
+
+    const myCharacter = document.getElementById("#mycharacter");
+    myCharacter.style.left = player.coordinateX + "px";
+    myCharacter.style.top = player.coordinateY + "px";
+
+    sendStatus();
+
 });
 
