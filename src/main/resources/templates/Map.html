@@ -9,8 +9,11 @@
     <title>2D Game Board</title>
     <link rel="stylesheet" href="/board.css">
 
+
+
 </head>
 <body>
+
 <table class="game-container">
     <tbody>
         <tr th:each="row, rowIdx : ${game.map.tiles}">
@@ -32,6 +35,5 @@
 
 
 <script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
-
 </body>
 </html>
