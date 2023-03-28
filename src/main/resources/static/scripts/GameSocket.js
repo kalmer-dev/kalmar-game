@@ -54,8 +54,15 @@ function getPlayerByName(players) {
 }
 
 function addOtherPlayersToPage(otherPlayers) {
-
+    const otherPlayersList = document.getElementById("other-players");
+    otherPlayersList.innerHTML = ""; // töröljük a korábbi listaelemeket
+    for (const currPlayer of otherPlayers) {
+        const listItem = document.createElement("li");
+        listItem.innerText = currPlayer.name;
+        otherPlayersList.appendChild(listItem);
+    }
 }
+
 
 
 document.addEventListener("keydown", (event) => {
@@ -80,7 +87,7 @@ document.addEventListener("keydown", (event) => {
             return;
     }
 
-    const myCharacter = document.getElementById("#mycharacter");
+    const myCharacter = document.getElementById("mycharacter");
     myCharacter.style.left = player.coordinateX + "px";
     myCharacter.style.top = player.coordinateY + "px";
 

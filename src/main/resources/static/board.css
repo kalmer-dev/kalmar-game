@@ -49,3 +49,10 @@ img {
     height: 20px;
     background-color: red;
 }
+
+#othercharacter {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
