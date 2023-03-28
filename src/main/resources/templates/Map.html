@@ -11,8 +11,9 @@
 
 </head>
 <body>
-<table class="game-container">
-    <tbody>
+
+<table  class="game-container" translate="yes">
+    <tbody id="table">
         <tr th:each="row, rowIdx : ${game.map.tiles}">
             <span th:each="element, colIdx : ${row}">
                 <td>
@@ -32,8 +33,9 @@
     </tbody>
 
 </table>
-
 <div id="mycharacter"></div>
+
+
 
 <script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
 

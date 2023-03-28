@@ -40,15 +40,22 @@ img {
     position: absolute;
     left: 50%;
     top: 50%;
-    clip-path: circle(100px at calc(50% + var(--mycharacter-cordinateX) + ${player.viewX}) calc(50% + var(--mycharacter-cordinateY) + ${player.viewY}));
+    clip-path: circle(100px at 0% 0%);
+    /*transform: translate(-50%, -50%);*/
 }
+
+
 
 #mycharacter {
     position: absolute;
     width: 20px;
     height: 20px;
     background-color: red;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
+
 
 #othercharacter {
     position: absolute;

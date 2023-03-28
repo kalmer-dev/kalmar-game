@@ -72,6 +72,7 @@ public class WebSocketController {
         Gson gson = new Gson();
         System.out.println(gson.toJson(game.getPlayers()));
         model.addAttribute("players", gson.toJson(game.getPlayers()));
+        model.addAttribute("mycaracter", new Player("asd"));
         return "Map";
     }
     @MessageMapping("/boot/{id}")
