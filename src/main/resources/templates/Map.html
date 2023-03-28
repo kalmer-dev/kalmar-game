@@ -17,18 +17,15 @@
         <tr th:each="row, rowIdx : ${game.map.tiles}">
             <span th:each="element, colIdx : ${row}">
                 <td>
-                    <div class="tile">
+                    <div class="game-tile">
                         <img th:src="@{${element.image}}"/>
-                            <div th:each="player : ${game.players}"
-                                 th:if="${player.name} == ${userName}">
-                                <img src="/OneColorBackgrounds/black.png" class="player"
-                                style="position: absolute; left: 50%; top: 50%;"/>
-                            </div>
+
 
                     </div>
                 </td>
             </span>
         </tr>
+
 
     </tbody>
 

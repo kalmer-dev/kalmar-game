@@ -54,13 +54,7 @@ function getPlayerByName(players) {
 }
 
 function addOtherPlayersToPage(otherPlayers) {
-    // const otherPlayersList = document.getElementById("other-players");
-    // otherPlayersList.innerHTML = ""; // töröljük a korábbi listaelemeket
-    // for (const currPlayer of otherPlayers) {
-    //     const listItem = document.createElement("li");
-    //     listItem.innerText = currPlayer.name;
-    //     otherPlayersList.appendChild(listItem);
-    // }
+
 }
 
 

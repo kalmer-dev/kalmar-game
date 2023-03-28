@@ -1,3 +1,8 @@
+html {
+    overflow: hidden;
+}
+
+
 img {
     display: block;
 }
@@ -40,7 +45,8 @@ img {
     position: absolute;
     left: 50%;
     top: 50%;
-    clip-path: circle(100px at 0% 0%);
+    clip-path: circle(400px at 0% 0%);
+
     /*transform: translate(-50%, -50%);*/
 }
 
