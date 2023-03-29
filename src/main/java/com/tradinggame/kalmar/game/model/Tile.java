@@ -13,11 +13,11 @@ public class Tile {
         switch (identifier) {
             case 0 -> {
                 this.type = Type.GRASS;
-                this.image = "/OneColorBackgrounds/green.png";
+                this.image = "/Backgrounds/basic.grass3.png";
             }
             case 1 -> {
-                this.type = Type.TRADING_POST;
-                this.image = "/OneColorBackgrounds/brown.png";
+                this.type = Type.GRASSWITHFLOWERS;
+                this.image = "/Backgrounds/basic.grass_withflowers.png";
             }
         }
 
