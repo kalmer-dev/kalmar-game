@@ -55,12 +55,27 @@ function getPlayerByName(players) {
             otherPlayers.push(currPlayer);
         }
     }
-    addOtherPlayersToPage(otherPlayers)
+    addOtherPlayersToPage(otherPlayers, player)
 }
 
 function addOtherPlayersToPage(otherPlayers) {
+    let others = document.getElementById('others');
+    others.innerHTML = '';
+    otherPlayers.forEach(function(other) {
+        let image = document.createElement('img');
+        image.src = '/OneColorBackgrounds/burgundy.png';
+         image.style.position = 'absolute';
+
+        let pozition = 'translate(' + (other.coordinateX - player.coordinateX) + 'px, ' + (other.coordinateY  - player.coordinateY) + 'px)';
+        console.log(pozition);
+        image.style.transform = pozition;
+        others.appendChild(image);
+        console.log(player)
+    });
+
 
 }
+
 
 function showinventory()
 {
@@ -98,7 +113,6 @@ document.addEventListener("keydown", (event) => {
     const table = document.getElementById("table");
     var string = 'translate(' + -player.coordinateX + 'px,' + -player.coordinateY + 'px)';
     table.style.transform = string;
-
 
     sendStatus();
 

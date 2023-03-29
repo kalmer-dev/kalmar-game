@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Hello <span data-sec-authentication="name"></span></h2>
-<form method="post" action="/connect">
+<form method="post" data-th-action="@{/connect}">
     <label for="inputValue">gameID</label>
     <input type="text" id="inputValue" name="inputValue">
     <button type="submit">Connect</button>

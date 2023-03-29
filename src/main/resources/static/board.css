@@ -24,12 +24,12 @@ img {
     display: block;
 }
 
-.game-container table {
-    border-collapse: collapse;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-}
+/*.game-container table {*/
+/*    border-collapse: collapse;*/
+/*    position: relative;*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*}*/
 
 .game-container td {
     padding: 0;
