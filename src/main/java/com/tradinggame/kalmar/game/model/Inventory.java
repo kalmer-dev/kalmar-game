@@ -1,32 +1,18 @@
 package com.tradinggame.kalmar.game.model;
 
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Data
 public class Inventory {
-    private List<Item> items;
+    private int tree;
+    private int money;
 
     public Inventory() {
-        items = new ArrayList<>();
+        this.tree = 0;
+        this.money = 100;
     }
-
-    public void addItem(Item item) {   //HOZZÁADÁS
-        items.add(item);
-    } //ÚJ ADAT HOZZÁADÁSA
-
-    public void removeItem(Item item) {    //TÖRLÉS
-        items.remove(item);
-    }
-
-    public void modifyItem(Item item,  int price) {    //MÓDÓSÍTÁS
-        if (items.contains(item)) {
-            item.setPrice(price);
-        }
-    }
-    public List<Item> getItems() {
-        return items;
-    }
-
 }
