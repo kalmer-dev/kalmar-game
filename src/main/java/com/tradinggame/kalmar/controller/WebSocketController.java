@@ -70,7 +70,7 @@ public class WebSocketController {
         model.addAttribute("game", game);
         model.addAttribute("userName", principal.getName());
         Gson gson = new Gson();
-        System.out.println(gson.toJson(game.getPlayers()));
+
         model.addAttribute("players", gson.toJson(game.getPlayers()));
         model.addAttribute("mycaracter", new Player("asd"));
         return "Map";

@@ -3,6 +3,7 @@ let gameID;
 let userName; // felhasználó neve
 let player;
 let game;
+let inventory;
 
 function connect(gameid, name) {
 
@@ -46,6 +47,10 @@ function getPlayerByName(players) {
     for (const currPlayer of players) {
         if (currPlayer.name.toString() === userName.toString()) {
             player = currPlayer;
+            console.log(currPlayer.inventory);
+            inventory = currPlayer.inventory;
+            console.log(inventory);
+            showinventory();
         } else {
             otherPlayers.push(currPlayer);
         }
@@ -57,7 +62,16 @@ function addOtherPlayersToPage(otherPlayers) {
 
 }
 
+function showinventory()
+{
+    console.log('itt vagyok');
+    let tree = document.getElementById('tree');
+    let money = document.getElementById('money');
 
+    tree.innerText = inventory.tree;
+    money.innerText = inventory.money;
+
+}
 
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
@@ -81,11 +95,9 @@ document.addEventListener("keydown", (event) => {
             return;
     }
 
-     const table = document.getElementById("table");
+    const table = document.getElementById("table");
     var string = 'translate(' + -player.coordinateX + 'px,' + -player.coordinateY + 'px)';
     table.style.transform = string;
-
-
 
 
     sendStatus();

@@ -69,3 +69,15 @@ img {
     height: 20px;
     background-color: red;
 }
+
+#inventory{
+
+    height: 200px;
+    width: 300px;
+    outline: 2px solid black;
+    position: relative;
+    background-color: brown;
+}
+
+h1{color: white;  text-align: center;}
+h2{color: white;}
