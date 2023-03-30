@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import lombok.Getter;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Map {
 
@@ -11,11 +13,23 @@ public class Map {
     //    private final int[][] mapAsMatrix =
     private final String[][] mapAsMatrix;
 
-
+    private List<TradingPost> posts = new ArrayList<>();
     @Getter
     private Tile[][] tiles;
 
     public Map() {
+        posts.add(new TradingPost(20, 50, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(200, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(200, 2400, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2500, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 3050, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 50, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2220, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(3020, 503, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2320, 1650, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(1020, 1050, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 650, ((int) (Math.random() * 10) + 10)));
+
         try {
 
 

@@ -49,7 +49,10 @@ public class WebSocketController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         Game game = searchGame(message.getId());
-        game.putPlayer(new Player(message.name));
+        Player player = new Player(message.name);
+        if(!game.getPlayers().contains(player)){
+            game.putPlayer(player);
+        }
         return game.getPlayers();
     }
 
