@@ -20,7 +20,7 @@
 
 <table  class="game-container" translate="yes">
     <tbody id="table">
-        <tr th:each="row, rowIdx : ${game.map.tiles}">
+        <tr th:each="row, rowIdx : ${game.getGameMap.tiles}">
             <span th:each="element, colIdx : ${row}">
                 <td>
                     <div class="game-tile">

@@ -14,11 +14,26 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Game {
+    private List<TradingPost> posts = new ArrayList<>();
+
+    {
+        posts.add(new TradingPost(20, 50, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(200, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(200, 2400, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2500, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 3050, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 50, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2220, 500, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(3020, 503, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2320, 1650, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(1020, 1050, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(2000, 650, ((int) (Math.random() * 10) + 10)));
+    }
 
     private Thread thread;
     private String identifier = RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom());
     private List<Player> players = new ArrayList<>();
-    private Map map = new Map();
+    private Map gameMap = new Map();
 
     public void putPlayer(Player player) {
         players.add(player);

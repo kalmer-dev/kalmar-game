@@ -18,10 +18,10 @@ function connect(gameid, name) {
         stompClient.subscribe('/topic/update/' + gameid, function (message) {
             game = JSON.parse(message.body);
             let players = game.players;
-            console.log(game.map);
-            tradingPosts = game.map.posts;
+
+            let posts = game.posts;
             getPlayerByName(players);
-            showtradingposts();
+            showtradingposts(posts);
         });
         waitstatus();
     });
@@ -78,7 +78,8 @@ function addOtherPlayersToPage(otherPlayers) {
     });
 }
 
-function showtradingposts() {
+function showtradingposts(places) {
+    tradingPosts = places;
     console.log(tradingPosts);
     let posts = document.getElementById('posts');
     posts.innerHTML = '';
@@ -88,7 +89,7 @@ function showtradingposts() {
         image.style.position = 'absolute';
         let position = 'translate(' + (post.coordinateX - player.coordinateX) + 'px, ' + (post.coordinateY - player.coordinateY) + 'px)';
         image.style.transform = position;
-        posts.appendChild(post);
+        posts.appendChild(image);
     });
 }
 
