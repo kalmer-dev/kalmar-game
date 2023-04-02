@@ -69,9 +69,12 @@ function addOtherPlayersToPage(otherPlayers) {
         let image = document.createElement('img');
         image.src = '/OneColorBackgrounds/burgundy.png';
         image.style.position = 'absolute';
-
+        image.setAttribute('id', other.name);
         let pozition = 'translate(' + (other.coordinateX - player.coordinateX) + 'px, ' + (other.coordinateY - player.coordinateY) + 'px)';
-        console.log(pozition);
+        image.addEventListener('click', function() {
+            let postId = this.getAttribute('id');
+            console.log(postId);
+        });
         image.style.transform = pozition;
         others.appendChild(image);
         console.log(player)
@@ -86,11 +89,42 @@ function showtradingposts(places) {
     tradingPosts.forEach(function (post) {
         let image = document.createElement('img');
         image.src = '/OneColorBackgrounds/gold.png';
+        image.setAttribute('id', post.identifier);
         image.style.position = 'absolute';
         let position = 'translate(' + (post.coordinateX - player.coordinateX) + 'px, ' + (post.coordinateY - player.coordinateY) + 'px)';
         image.style.transform = position;
+        image.addEventListener('click', function() {
+            let postId = this.getAttribute('id');
+            showShop(postId);
+        });
         posts.appendChild(image);
     });
+}
+
+function showShop(id){
+    let city = searchCotyById(id);
+    console.log(city)
+    let shop = document.getElementById('shop');
+    let treeCost = document.getElementById('treecost');
+    treeCost.innerText = city.treePrice;
+    shop.style.display = 'block'
+
+}
+
+function  searchCotyById(id){
+    for(let i = 0; i < tradingPosts.length; i ++){
+        if( tradingPosts[i].identifier === id){
+            return tradingPosts[i];
+        }
+        console.log(tradingPosts[i])
+
+    }
+    return null;
+}
+
+function shoping(){
+    let shop = document.getElementById('shop');
+    shop.style.display = 'none';
 }
 
 function fight(enemy) {

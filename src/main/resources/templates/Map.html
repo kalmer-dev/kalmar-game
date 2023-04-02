@@ -24,10 +24,7 @@
             <span th:each="element, colIdx : ${row}">
                 <td>
                     <div class="game-tile">
-
                         <img th:src="@{${element.image}}"/>
-
-
                     </div>
                 </td>
             </span>
@@ -38,11 +35,17 @@
 <div id="mycharacter"></div>
 <div class="game-container">
     <span id="posts"></span>
-
 </div>
 <div class="game-container">
-<span id="others" onclick="fight()"></span>
-
+<span id="others"></span>
+</div>
+<div id="shop" style="display: none">
+    <h1>Shop</h1>
+    <h2>Tree cost: <span id="treecost">he? </span> Buy: <label for="tree"></label>
+    <input type="number" id="treenumber" name="tree"></h2>
+    <h2></h2>
+    <h2></h2>
+    <button type="submit" onclick="shoping()">Accept</button>
 </div>
 
 
