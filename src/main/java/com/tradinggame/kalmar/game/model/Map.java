@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import lombok.Getter;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Map {
 
@@ -11,11 +13,12 @@ public class Map {
     //    private final int[][] mapAsMatrix =
     private final String[][] mapAsMatrix;
 
-
     @Getter
     private Tile[][] tiles;
 
     public Map() {
+
+
         try {
 
 
