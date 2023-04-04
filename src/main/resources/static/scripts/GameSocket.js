@@ -28,7 +28,10 @@ function connect(gameid, name) {
         stompClient.subscribe('/topic/minigame/' + gameid, function (message) {
             let miniGames = JSON.parse(message.body);
             searchMyMinigame(miniGames);
-        })
+        });
+        stompClient.subscribe('/topic/gameend/' + gameid, function (message) {
+           window.location.href = "/statistic/" + gameid;
+        });
         waitstatus();
     });
 

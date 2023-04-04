@@ -7,9 +7,11 @@ import com.tradinggame.kalmar.game.model.MiniGame;
 import com.tradinggame.kalmar.game.model.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import java.util.List;
 
 @Controller
 public class WebSocketController {
+
+
     List<Game> games = new ArrayList<>();
     List<MiniGame> miniGames = new ArrayList<>();
 
@@ -50,12 +54,11 @@ public class WebSocketController {
             if(miniGames.get(i).getGameID().equals(miniGame.getGameID()) &&
                     miniGames.get(i).getPlayer1().equals(miniGame.getPlayer1()) &&
                     miniGames.get(i).getPlayer2().equals(miniGame.getPlayer2())){
-
                 miniGames.remove(i);
-
             }
         }
     }
+
 
     @MessageMapping("/new/minigame/{id}")
     @SendTo("/topic/minigame/{id}")
@@ -105,7 +108,10 @@ public class WebSocketController {
         return game.getPlayers();
     }
 
-
+    @GetMapping("/statistic/{id}")
+    public String getStatistic(){
+        return "";
+    }
     @PostMapping("/connect")
     public String compareInput(@RequestParam("inputValue") String inputValue, Model model) {
         Game game = searchGame(inputValue);
@@ -130,7 +136,9 @@ public class WebSocketController {
     @MessageMapping("/boot/{id}")
     @SendTo("/topic/update/{id}")
     public Game bootGame(NameId message){
-        return searchGame(message.getId());
+        Game game = searchGame(message.getId());
+        game.getThread().start();
+        return game;
     }
 
     @GetMapping("/lobby/{id}")
