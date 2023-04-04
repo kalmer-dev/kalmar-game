@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 
@@ -16,8 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Game implements Runnable {
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
+    private boolean end;
     private List<TradingPost> posts = new ArrayList<>();
 
     {
@@ -34,7 +34,7 @@ public class Game implements Runnable {
         posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2000, 650, ((int) (Math.random() * 10) + 10)));
     }
 
-    private Thread thread = new Thread();
+    private Thread thread = new Thread(this);
     private String identifier = RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom());
     private List<Player> players = new ArrayList<>();
     private Map gameMap = new Map();
@@ -52,22 +52,17 @@ public class Game implements Runnable {
         }
     }
 
-    public void sendTimeToClients() {
-        String topic = "/topic/gameend/" + identifier; // a témakör, ahová az üzenetet küldöd
-        long currentTime = System.currentTimeMillis(); // a jelenlegi idő
-        simpMessagingTemplate.convertAndSend(topic, currentTime); // elküldjük az üzenetet
-    }
+
+
 
     @Override
     public void run() {
-        System.out.println("előtt");
         try {
-            thread.sleep(1000);
+            thread.sleep(10000);
         } catch (InterruptedException e) {
             System.out.println("bent");
         }
-        System.out.println("itt");
-        sendTimeToClients();
+        end = true;
     }
 }
 

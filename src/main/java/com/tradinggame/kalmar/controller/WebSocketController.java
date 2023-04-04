@@ -28,7 +28,8 @@ import java.util.List;
 @Controller
 public class WebSocketController {
 
-
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
     List<Game> games = new ArrayList<>();
     List<MiniGame> miniGames = new ArrayList<>();
 

@@ -63,9 +63,6 @@ img {
 
 #mycharacter {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: red;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

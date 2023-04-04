@@ -20,6 +20,9 @@ function connect(gameid, name) {
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/update/' + gameid, function (message) {
             game = JSON.parse(message.body);
+            if(game.end){
+                window.location.href = "/statistic/" + gameid;
+            }
             let players = game.players;
             let posts = game.posts;
             getPlayerByName(players);
@@ -28,9 +31,6 @@ function connect(gameid, name) {
         stompClient.subscribe('/topic/minigame/' + gameid, function (message) {
             let miniGames = JSON.parse(message.body);
             searchMyMinigame(miniGames);
-        });
-        stompClient.subscribe('/topic/gameend/' + gameid, function (message) {
-           window.location.href = "/statistic/" + gameid;
         });
         waitstatus();
     });
@@ -214,7 +214,7 @@ function addOtherPlayersToPage(otherPlayers) {
     others.innerHTML = '';
     otherPlayers.forEach(function (other) {
         let image = document.createElement('img');
-        image.src = '/OneColorBackgrounds/burgundy.png';
+        image.src = '/Character/purpleShirtBoy.png';
         image.style.position = 'absolute';
         image.setAttribute('id', other.name);
         let pozition = 'translate(' + (other.coordinateX - player.coordinateX) + 'px, ' + (other.coordinateY - player.coordinateY) + 'px)';
@@ -253,7 +253,7 @@ function showtradingposts(places) {
     posts.innerHTML = '';
     tradingPosts.forEach(function (post) {
         let image = document.createElement('img');
-        image.src = '/OneColorBackgrounds/gold.png';
+        image.src = '/Kereskedőpont/village.png';
         image.setAttribute('id', post.identifier);
         image.style.position = 'absolute';
         let position = 'translate(' + (post.coordinateX - player.coordinateX) + 'px, ' + (post.coordinateY - player.coordinateY) + 'px)';
