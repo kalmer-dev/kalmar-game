@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>home</title>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="/style-home.css">
 </head>
 <body>
-<h2>Hello <span data-sec-authentication="name"></span></h2>
+<div id="text"><h2><span data-sec-authentication="name"></span></h2></div>
 <form data-th-action="@{/initialize-game}" method="POST">
-  <button type="submit">New Game</button>
+    <!--<div id="buttton"><button type="submit">New Game</button></div>-->
+    <div class="wrap">
+        <button class="button">New Game</button>
+    </div>
 </form>
-<a href="/connect">
-  <p>Connect</p>
-</a>
-
+<!--<div id="connnect">
+    <a href="/connect">
+        <p>Connect</p>
+    </a>
+</div>
+-->
+<div class="waviy">
+    <a href="/connect">  <span style="--i:1">C</span>
+    <span style="--i:2">O</span>
+    <span style="--i:3">N</span>
+    <span style="--i:4">N</span>
+    <span style="--i:5">E</span>
+    <span style="--i:6">C</span>
+    <span style="--i:7">T</span></a>
+</div>
 </body>
 </html>
