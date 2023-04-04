@@ -20,11 +20,11 @@
 
 <table  class="game-container" translate="yes">
     <tbody id="table">
-        <tr th:each="row, rowIdx : ${game.getGameMap.tiles}">
+        <tr style="margin: 0" th:each="row, rowIdx : ${game.getGameMap.tiles}">
             <span th:each="element, colIdx : ${row}">
-                <td>
-                    <div class="game-tile">
-                        <img th:src="@{${element.image}}"/>
+                <td style="padding: 0">
+                    <div style="display: block">
+                        <img style="display: block" th:src="@{${element.image}}"/>
                     </div>
                 </td>
             </span>
@@ -48,6 +48,24 @@
     <button type="submit" onclick="shoping()">Accept</button>
 </div>
 
+<div class="score" id="lose" style="display: none">
+    <h1>LOSE</h1>
+    <button onclick="okey()">OK</button>
+</div>
+<div class="score" id="win" style="display: none">
+    <h1>WIN</h1>
+    <button onclick="okey()">OK</button>
+</div>
+<div class="score" id="tie" style="display: none">
+    <h1>TIE</h1>
+    <button onclick="okey()">OK</button>
+</div>
+
+<div id="minGame" style="display: none">
+    <img src="/OneColorBackgrounds/blue.png" style="display: flex" id="rock" onclick="choose('rock')"/>
+    <img src="/OneColorBackgrounds/blue.png" style="display: flex" id="paper" onclick="choose('paper')"/>
+    <img src="/OneColorBackgrounds/blue.png" style="display: flex" id="ollo" onclick="choose('ollo')"/>
+</div>
 
 <script>connect('[[${game.identifier}]]', '[[${userName}]]')</script>
 

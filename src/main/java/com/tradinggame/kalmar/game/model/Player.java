@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Player {
     private boolean onShop = false;
-    private String fightWith = null;
+    private String fightWith = "";
     private String name;
     private int coordinateX;
     private int coordinateY;

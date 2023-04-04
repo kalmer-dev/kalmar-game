@@ -41,7 +41,16 @@ img {
 
 }
 
+.score{
+    height: 200px;
+    width: 300px;
+    outline: 2px solid black;
+    position: relative;
+    background-color: brown;
+}
+
 .game-container {
+    border-collapse: collapse;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -79,6 +88,14 @@ img {
 }
 
 #shop{
+    height: 300px;
+    width: 800px;
+    outline: 2px solid black;
+    position: relative;
+    background-color: brown;
+}
+
+#minGame{
     height: 300px;
     width: 800px;
     outline: 2px solid black;

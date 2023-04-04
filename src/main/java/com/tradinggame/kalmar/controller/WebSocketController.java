@@ -1,15 +1,12 @@
 package com.tradinggame.kalmar.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.mysql.cj.xdevapi.JsonArray;
 import com.tradinggame.kalmar.game.model.Game;
+import com.tradinggame.kalmar.game.model.MiniGame;
 import com.tradinggame.kalmar.game.model.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -24,13 +21,59 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class WebSocketController {
     List<Game> games = new ArrayList<>();
+    List<MiniGame> miniGames = new ArrayList<>();
+
+    @MessageMapping("/minigame/{id}")
+    @SendTo("/topic/minigame/{id}")
+    public List<MiniGame> sendMinigames(MiniGame miniGame){
+        for (int i = 0; i < miniGames.size(); i++) {
+            if(miniGames.get(i).getGameID().equals(miniGame.getGameID()) &&
+            miniGames.get(i).getPlayer1().equals(miniGame.getPlayer1()) &&
+            miniGames.get(i).getPlayer2().equals(miniGame.getPlayer2())){
+
+                miniGames.get(i).setPlayer1Choose(miniGame.getPlayer1Choose());
+                miniGames.get(i).setPlayer2Choose(miniGame.getPlayer2Choose());
+                return searchMiniGames(miniGame.getGameID());
+            }
+        }
+        return null;
+    }
+
+    @MessageMapping("/minigame/end")
+    public void deleteMini(MiniGame miniGame){
+        for (int i = 0; i < miniGames.size(); i++) {
+            if(miniGames.get(i).getGameID().equals(miniGame.getGameID()) &&
+                    miniGames.get(i).getPlayer1().equals(miniGame.getPlayer1()) &&
+                    miniGames.get(i).getPlayer2().equals(miniGame.getPlayer2())){
+
+                miniGames.remove(i);
+
+            }
+        }
+    }
+
+    @MessageMapping("/new/minigame/{id}")
+    @SendTo("/topic/minigame/{id}")
+    public  List<MiniGame> newMiniGame(MiniGame miniGame){
+        miniGames.add(miniGame);
+        List<MiniGame> games = searchMiniGames(miniGame.getGameID());
+        return games;
+    }
+
+    private List<MiniGame> searchMiniGames(String id){
+        List<MiniGame> games = new ArrayList<>();
+        for (MiniGame actual : miniGames){
+            if(id.equals(actual.getGameID())){
+                games.add(actual);
+            }
+        }
+        return games;
+    }
 
     @MessageMapping("/refresh/{id}")
     @SendTo("/topic/update/{id}")
@@ -40,7 +83,7 @@ public class WebSocketController {
         player.setCoordinateX(playerMoveInfo.x);
         player.setCoordinateY(playerMoveInfo.y);
         player.setOnShop(playerMoveInfo.onShop);
-        player.setFightWith(playerMoveInfo.onFight);
+        player.setFightWith(playerMoveInfo.fightWith);
         player.getInventory().setTree(playerMoveInfo.tree);
         player.getInventory().setMoney(playerMoveInfo.money);
         game.updatePlayer(player);
@@ -55,7 +98,9 @@ public class WebSocketController {
         Game game = searchGame(message.getId());
         Player player = new Player(message.name);
         if(!game.getPlayers().contains(player)){
-            game.putPlayer(player);
+            if(player !=null){
+                game.putPlayer(player);
+            }
         }
         return game.getPlayers();
     }
@@ -137,7 +182,7 @@ class PlayerMoveInfo{
     int x;
     int y;
     boolean onShop;
-    String onFight;
+    String fightWith;
     int tree;
     int money;
 }
