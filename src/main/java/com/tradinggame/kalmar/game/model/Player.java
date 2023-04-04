@@ -16,8 +16,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        coordinateX = 0;
-        coordinateY = 0;
+        coordinateX = (int)(Math.random()*3000);
+        coordinateY = (int)(Math.random()*3000);
         viewX = 0;
         viewY = 0;
         inventory=new Inventory();
