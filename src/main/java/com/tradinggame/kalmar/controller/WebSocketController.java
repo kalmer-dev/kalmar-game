@@ -39,6 +39,10 @@ public class WebSocketController {
         Player player = new Player(playerMoveInfo.playerName);
         player.setCoordinateX(playerMoveInfo.x);
         player.setCoordinateY(playerMoveInfo.y);
+        player.setOnShop(playerMoveInfo.onShop);
+        player.setFightWith(playerMoveInfo.onFight);
+        player.getInventory().setTree(playerMoveInfo.tree);
+        player.getInventory().setMoney(playerMoveInfo.money);
         game.updatePlayer(player);
         return game;
     }
@@ -132,4 +136,8 @@ class PlayerMoveInfo{
     String playerName;
     int x;
     int y;
+    boolean onShop;
+    String onFight;
+    int tree;
+    int money;
 }

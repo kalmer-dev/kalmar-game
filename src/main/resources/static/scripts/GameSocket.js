@@ -41,7 +41,11 @@ function sendStatus() {
         id: gameID,
         playerName: player.name,
         x: player.coordinateX,
-        y: player.coordinateY
+        y: player.coordinateY,
+        onShop: player.onShop,
+        onFight: player.onFight,
+        tree: player.inventory.tree,
+        money: player.inventory.money
     }));
 
 }
@@ -53,9 +57,11 @@ function getPlayerByName(players) {
             player = currPlayer;
             console.log(currPlayer.inventory);
             inventory = currPlayer.inventory;
-            console.log(inventory);
             showinventory();
         } else {
+            if(currPlayer.onFight === userName){
+                player.onFight = currPlayer.name;
+            }
             otherPlayers.push(currPlayer);
         }
     }
@@ -73,11 +79,22 @@ function addOtherPlayersToPage(otherPlayers) {
         let pozition = 'translate(' + (other.coordinateX - player.coordinateX) + 'px, ' + (other.coordinateY - player.coordinateY) + 'px)';
         image.addEventListener('click', function() {
             let postId = this.getAttribute('id');
-            console.log(postId);
+            let enemy;
+            for (const currPlayer of players) {
+                if (currPlayer.name.toString() === userName.toString()) {
+                    enemy = currPlayer;
+                }
+
+            }
+            if(!(player.onShop || player.onFight == null)){
+                if(!(enemy.onShop || enemy.onFight)){
+                    player.onFight == enemy.name;
+                    sendStatus();
+                }
+            }
         });
         image.style.transform = pozition;
         others.appendChild(image);
-        console.log(player)
     });
 }
 
@@ -94,8 +111,12 @@ function showtradingposts(places) {
         let position = 'translate(' + (post.coordinateX - player.coordinateX) + 'px, ' + (post.coordinateY - player.coordinateY) + 'px)';
         image.style.transform = position;
         image.addEventListener('click', function() {
-            let postId = this.getAttribute('id');
-            showShop(postId);
+            if(!(player.onShop || player.onFight)) {
+                let postId = this.getAttribute('id');
+                player.onShop = true;
+                showShop(postId);
+                sendStatus();
+            }
         });
         posts.appendChild(image);
     });
@@ -103,12 +124,14 @@ function showtradingposts(places) {
 
 function showShop(id){
     let city = searchCotyById(id);
-    console.log(city)
     let shop = document.getElementById('shop');
     let treeCost = document.getElementById('treecost');
+    let  treenumber =document.getElementById('treenumber');
+    treenumber.setAttribute('min', -player.inventory.tree);
+    console.log(player.inventory.money / parseInt(city.treePrice))
+    treenumber.setAttribute('max', player.inventory.money / parseInt(city.treePrice));
     treeCost.innerText = city.treePrice;
     shop.style.display = 'block'
-
 }
 
 function  searchCotyById(id){
@@ -124,6 +147,13 @@ function  searchCotyById(id){
 
 function shoping(){
     let shop = document.getElementById('shop');
+    let treenumber = parseInt(document.getElementById('treenumber').value);
+    let cost = parseInt(document.getElementById('treecost').innerText);
+    player.inventory.tree += treenumber;
+    console.log(player.inventory.tree)
+    player.inventory.money -= treenumber * cost;
+    player.onShop = false;
+    sendStatus();
     shop.style.display = 'none';
 }
 
@@ -132,7 +162,6 @@ function fight(enemy) {
 }
 
 function showinventory() {
-    console.log('itt vagyok');
     let tree = document.getElementById('tree');
     let money = document.getElementById('money');
 
@@ -142,6 +171,8 @@ function showinventory() {
 }
 
 document.addEventListener("keydown", (event) => {
+    console.log(player.onShop)
+    if(!(player.onShop || player.onFight == null)){
     switch (event.key) {
         case "ArrowUp":
 
@@ -183,5 +214,5 @@ document.addEventListener("keydown", (event) => {
 
     sendStatus();
 
-});
+}});
 
