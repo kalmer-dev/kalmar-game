@@ -101,17 +101,23 @@ public class WebSocketController {
 
         Game game = searchGame(message.getId());
         Player player = new Player(message.name);
-        if(!game.getPlayers().contains(player)){
-            if(player !=null){
-                game.putPlayer(player);
+        for (Player actual:game.getPlayers()) {
+            if(actual.getName().equals(player.getName())){
+                return game.getPlayers();
+
             }
         }
+
+                game.putPlayer(player);
         return game.getPlayers();
     }
 
     @GetMapping("/statistic/{id}")
-    public String getStatistic(){
-        return "";
+    public String getStatistic(Model model, @PathVariable String id){
+        Game game = searchGame(id);
+        System.out.println(game.getPlayers());
+        model.addAttribute("game", game);
+        return "score";
     }
     @PostMapping("/connect")
     public String compareInput(@RequestParam("inputValue") String inputValue, Model model) {
