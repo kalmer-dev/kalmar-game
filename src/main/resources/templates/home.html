@@ -5,6 +5,13 @@
   <title>home</title>
 </head>
 <body>
+
+<!--<audio controls autoplay>-->
+<!--&lt;!&ndash;  <source src="horse.ogg" type="audio/ogg">&ndash;&gt;-->
+<!--  <source src="/sound/horror-hit-logo-142395.mp3" type="audio/mpeg">-->
+<!--  Your browser does not support the audio element.-->
+<!--</audio>-->
+<audio id="myAudio" src="/sound/horror-hit-logo-142395.wav" autoplay></audio>
 <h2>Hello <span data-sec-authentication="name"></span></h2>
 <form data-th-action="@{/initialize-game}" method="POST">
   <button type="submit">New Game</button>
