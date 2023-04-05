@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/style-connect.css">
 </head>
 <body>
-<h2>Hello <span data-sec-authentication="name"></span></h2>
-<form method="post" data-th-action="@{/connect}">
+<div id="text"><h2>Hello <span data-sec-authentication="name"></span></h2></div>
+<div id="form"> <form method="post" data-th-action="@{/connect}">
     <label for="inputValue">gameID</label>
-    <input type="text" id="inputValue" name="inputValue">
-    <button type="submit">Connect</button>
-</form>
-<a href="/home">
+    <input type="text" id="inputValue" name="inputValue"></form></div>
+<div class="start">
+    <button class="button" type="submit">Connect</button>
+</div>
+
+ <div class="homepagebutton"> <a href="/home">
     <p>Home</p>
-</a>
+</a></div>
 </body>
 </html>

@@ -1,23 +1,16 @@
-#text{
-    font-size: 50px;
-    color: deeppink;
-    position: absolute;
-    height: 700px;
-    left:10%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+html{
+    background: url("/Backgrounds/horizont.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-/*#buttton{
-    position: absolute;
-    top:30%;
-}*/
-.waviy {
-    /*position: relative;*/
-    position: absolute;
-    top:35%;
-    left:4%;
+
+.homepagebutton {
+    text-align: center;
+    /*border: 3px solid green;*/
     font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 5px;
+    font-size: 35px;
     letter-spacing: 6px;
     word-spacing: 6px;
     color: #000000;
@@ -27,11 +20,11 @@
     font-variant: small-caps;
     text-transform: lowercase;
 }
-.waviy span {
+.homepagebutton span {
     position: relative;
     display: inline-block;
     font-size: 15px;
-    color: #fff;
+    color: #000000;
     text-transform: uppercase;
     animation: flip 2s infinite;
     animation-delay: calc(.2s * var(--i))
@@ -41,29 +34,43 @@
         transform: rotateY(360deg)
     }
 }
-/*
-#connnect{
-    position: absolute;
-    top:30%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 27px;
-    letter-spacing: 6px;
-    word-spacing: 6px;
-    color: #000000;
-    font-weight: 700;
-    text-decoration: none solid rgb(68, 68, 68);
+
+#form{
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: ABeeZee, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
     font-style: normal;
-    font-variant: small-caps;
-    text-transform: lowercase;
-}*/
-.wrap {
-    position: absolute;
-    top: 23%;
-    /*
+    text-decoration: none;
+    line-height: 2em;
+    letter-spacing: 0px;
+}
+#text{
+    text-align: center;
+    /*border: 3px solid green;*/
+    font-size: 39px;
+    color: #ff9c07;
+    font-family: Arial Black, Gadget, sans-serif;
+    text-shadow: 0px 0px 0 rgb(238,139,0),
+    1px 1px 0 rgb(222,123,0),
+    2px 2px 0 rgb(205,106,0),
+    3px 3px 0 rgb(189,90,0),
+    4px 4px 0 rgb(172,73,0),
+    5px 5px  0 rgb(155,56,0),
+    6px 6px 5px rgba(0,0,0,0.6),
+    6px 6px 1px rgba(0,0,0,0.5),
+    0px 0px 5px rgba(0,0,0,.2);
+}
+
+
+.start {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;*/
+    justify-content: center;
 }
 
 .button {
@@ -140,17 +147,4 @@ button:hover::after, button:focus::after {
         height: 300px;
         opacity: 0;
     }
-}
-/*body {
-    background-image: url("/Backgrounds/terrifiednootnoot.jpg");
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}*/
-html {
-    background: url("/Backgrounds/terrifiednootnoot.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
