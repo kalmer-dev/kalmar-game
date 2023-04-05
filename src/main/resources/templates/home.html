@@ -5,20 +5,7 @@
   <title>home</title>
 </head>
 <body>
-
-<!--<audio controls autoplay>-->
-<!--&lt;!&ndash;  <source src="horse.ogg" type="audio/ogg">&ndash;&gt;-->
-<!--  <source src="/sound/horror-hit-logo-142395.mp3" type="audio/mpeg">-->
-<!--  Your browser does not support the audio element.-->
-<!--</audio>-->
-
-<!--<audio id="myAudio" src="https://github.com/kalmer-dev/kalmar-game/blob/sound/src/main/resources/sound/horror-hit-logo-142395.mp3 " autoplay></audio>-->
-
-<!--<audio controls autoplay>-->
-<!--  <source src="/audio" type="audio/mpeg">-->
-<!--  Your browser does not support the audio element.-->
-<!--</audio>-->
-<audio id="myAudio" th:src="@{/audio}" th:type="'audio/mpeg'" autoplay></audio>
+<audio id="myAudio" th:src="@{/audioHome}" th:type="'audio/mpeg'" autoplay></audio>
 
 <h2>Hello <span data-sec-authentication="name"></span></h2>
 <form data-th-action="@{/initialize-game}" method="POST">
