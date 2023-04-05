@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/style-home.css">
 </head>
 <body>
+<audio id="myAudio" th:src="@{/audio}" th:type="'audio/mpeg'" autoplay></audio>
+
 <div id="text"><h2><span data-sec-authentication="name"></span></h2></div>
 <form data-th-action="@{/initialize-game}" method="POST">
     <!--<div id="buttton"><button type="submit">New Game</button></div>-->
