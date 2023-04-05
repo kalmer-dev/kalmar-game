@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<audio id="myAudio" th:src="@{/audioHome}" th:type="'audio/mpeg'" autoplay></audio>
 <table>
     <tbody>
     <tr th:each="player : ${game.players}">

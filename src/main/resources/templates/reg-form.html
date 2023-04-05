@@ -84,6 +84,7 @@
   </style>
 </head>
 <body>
+<audio id="myAudio" th:src="@{/audioHome}" th:type="'audio/mpeg'" autoplay></audio>
 <h1>Registration</h1>
 
 <form action="/registration" data-th-action="@{/registration}" data-th-object="${newUser}" method="post">
@@ -94,7 +95,7 @@
      th:errors="*{name}"></p>
 
 
-  <label for="contactPassword">Jelszó:</label>
+  <label for="contactPassword">Jelszó: jgcjdzr</label>
   <input id="contactPassword" name="password" data-th-field="*{password}" type="password" required>
   <p style="color: red;"
      th:if="${#fields.hasErrors('password')}"
