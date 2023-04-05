@@ -58,7 +58,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         try {
-            thread.sleep(10000);
+            thread.sleep(60000);
         } catch (InterruptedException e) {
             System.out.println("bent");
         }
