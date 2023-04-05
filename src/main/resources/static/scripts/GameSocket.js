@@ -184,6 +184,9 @@ function getPlayerByName(players) {
             console.log(currPlayer.inventory);
             inventory = currPlayer.inventory;
             showinventory();
+            const table = document.getElementById("table");
+            var string = 'translate(' + -player.coordinateX + 'px,' + -player.coordinateY + 'px)';
+            table.style.transform = string;
         } else {
             if (currPlayer.fightWith === userName) {
                 player.fightWith = currPlayer.name;
