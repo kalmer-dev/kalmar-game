@@ -62,10 +62,16 @@
     <h2>Tree cost: <span id="treecost">he? </span> Buy: <label id="asd"></label>
     <input type="number" id="treenumber"></h2>
     <h2></h2>
-    <h2></h2>
-    <button type="submit" onclick="shoping()">Accept</button>
+    <h2></h2>'
+    <button type="submit" onclick="shoping(); playSound('doorAudio');">Accept</button>
+    <audio id="doorAudio" th:src="@{/audioDoor}" th:type="'audio/mpeg'"></audio>
 </div>
-
+<script>
+    function playSound(name) {
+        var audio = document.getElementById(name);
+        audio.play();
+    }
+</script>
 <div class="score" id="lose" style="display: none">
     <h1>LOSE</h1>
     <button onclick="okey()">OK</button>
@@ -81,9 +87,9 @@
 
 <div id="minGame" style="display: none">
 
-    <img src="/RockPaperScissors/rock.png" style="display: inline" id="rock" onclick="choose('rock')"/>
-    <img src="/RockPaperScissors/paper.png" style="display: inline" id="paper" onclick="choose('paper')"/>
-    <img src="/RockPaperScissors/scissors.png" style="display: inline" id="ollo" onclick="choose('ollo')"/>
+    <img src="/RockPaperScissors/rock.png" style="display: inline" id="rock" onclick="choose('rock'); playSound('audioRock');"/>
+    <img src="/RockPaperScissors/paper.png" style="display: inline" id="paper" onclick="choose('paper'); playSound('audioPaper');"/>
+    <img src="/RockPaperScissors/scissors.png" style="display: inline" id="ollo" onclick="choose('ollo'); playSound('audioScissors');"/>
 
 </div>
 

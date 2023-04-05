@@ -28,6 +28,36 @@ public class AudioController {
         streamAudio(response, "src/main/resources/sound/epic-relaxing-flute-music.mp3");
     }
 
+    @GetMapping("/audioCash")
+    public void streamAudioCash(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/cash-register.mp3");
+    }
+
+    @GetMapping("/audioDoor")
+    public void streamAudioDoor(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/dorm-door-opening.mp3");
+    }
+
+    @GetMapping("/audioDrum")
+    public void streamAudioDrum(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/drum.mp3");
+    }
+
+    @GetMapping("/audioScissors")
+    public void streamAudioScissors(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/scissors.mp3");
+    }
+
+    @GetMapping("/audioPaper")
+    public void streamAudioPaper(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/paper.mp3");
+    }
+
+    @GetMapping("/audioRock")
+    public void streamAudioRock(HttpServletResponse response) throws IOException {
+        streamAudio(response, "src/main/resources/sound/rock.mp3");
+    }
+
     public void streamAudio(HttpServletResponse response, String path) throws IOException {
         response.setContentType("audio/mpeg");
 
