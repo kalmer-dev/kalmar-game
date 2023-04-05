@@ -36,6 +36,8 @@ html {
 }*/
 #users{
     text-align: center;
+    /*background: #cce5ff;
+    color: darkblue;*/
     /*border: 3px solid green;*/
 }
 
@@ -182,6 +184,7 @@ ul li {
     background: #cce5ff;
     color: darkblue;
     font-size: 30px;
+    list-style-type: none;
 
     margin-left: 500px;
     margin-right: 500px;
