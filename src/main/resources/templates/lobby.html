@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/style-lobby.css">
 </head>
 <body>
+<audio id="myAudio" th:src="@{/audioLobby}" th:type="'audio/mpeg'" autoplay></audio>
+
 <div id="gameCode"><h1>[[${game.identifier}]]</h1></div>
 <!--<div id="usernamee"><span id="userName" data-sec-authentication="name"></span></div>-->
 <div id="users">
