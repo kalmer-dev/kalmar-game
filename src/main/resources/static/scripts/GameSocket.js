@@ -184,6 +184,9 @@ function getPlayerByName(players) {
             console.log(currPlayer.inventory);
             inventory = currPlayer.inventory;
             showinventory();
+            const table = document.getElementById("table");
+            var string = 'translate(' + -player.coordinateX + 'px,' + -player.coordinateY + 'px)';
+            table.style.transform = string;
         } else {
             if (currPlayer.fightWith === userName) {
                 player.fightWith = currPlayer.name;
@@ -205,16 +208,16 @@ function okey() {
     let rock = document.getElementById('rock');
     let paper = document.getElementById('paper');
     let ollo = document.getElementById('ollo');
-    rock.style.display = 'block';
-    paper.style.display = 'block';
-    ollo.style.display = 'block';
+    rock.style.display = 'inline';
+    paper.style.display = 'inline';
+    ollo.style.display = 'inline';
 }
 function addOtherPlayersToPage(otherPlayers) {
     let others = document.getElementById('others');
     others.innerHTML = '';
     otherPlayers.forEach(function (other) {
         let image = document.createElement('img');
-        image.src = '/Character/purpleShirtBoy.png';
+        image.src = '/Character/yellowShirtBoy.png';
         image.style.position = 'absolute';
         image.setAttribute('id', other.name);
         let pozition = 'translate(' + (other.coordinateX - player.coordinateX) + 'px, ' + (other.coordinateY - player.coordinateY) + 'px)';
