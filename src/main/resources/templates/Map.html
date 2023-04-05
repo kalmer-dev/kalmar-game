@@ -10,7 +10,23 @@
     <link rel="stylesheet" href="/board.css">
 
 </head>
-<body>
+<body onload="startTimer()">
+<div id="timer"></div>
+
+<script>
+    function startTimer() {
+        var timeLeft = 90;
+        var countdownTimer = setInterval(function() {
+            timeLeft--;
+            document.getElementById("timer").innerHTML = "Hátralévő idő: " + timeLeft + " másodperc.";
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("timer").innerHTML = "Az idő lejárt!";
+            }
+        }, 1000);
+    }
+</script>
 <div id="inventory">
 
     <h1>Inventory</h1>
