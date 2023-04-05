@@ -21,17 +21,17 @@ public class Game implements Runnable {
     private List<TradingPost> posts = new ArrayList<>();
 
     {
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),20, 50, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),200, 500, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),200, 2400, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2500, 500, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2000, 3050, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2000, 50, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),378, 1555, ((int) (Math.random() * 10) + 10)));  //200- 3000-IG KORDINÁTÁS
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),883, 2342, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),925, 432, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),1085, 777, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),1111, 1352, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),444, 935, ((int) (Math.random() * 10) + 10)));
         posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2220, 500, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),3020, 503, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),1234, 2134, ((int) (Math.random() * 10) + 10)));
         posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2320, 1650, ((int) (Math.random() * 10) + 10)));
         posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),1020, 1050, ((int) (Math.random() * 10) + 10)));
-        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),2000, 650, ((int) (Math.random() * 10) + 10)));
+        posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),678, 914, ((int) (Math.random() * 10) + 10)));
     }
 
     private Thread thread = new Thread(this);
