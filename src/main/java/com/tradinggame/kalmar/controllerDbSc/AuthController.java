@@ -53,7 +53,7 @@ public class AuthController {
         nu.setPassword(passwordEncoder.encode(reg.getPassword()));
         user_repository.save(nu);
 
-        return "redirect:/login";
+        return "redirect:/home";
     }
 
     @GetMapping("/registration")
