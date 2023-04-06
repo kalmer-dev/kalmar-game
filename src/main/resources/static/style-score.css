@@ -1,0 +1,38 @@
+html{
+    background: url("/Backgrounds/horizont.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.homepagebutton {
+    text-align: center;
+    /*border: 3px solid green;*/
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 35px;
+    letter-spacing: 6px;
+    word-spacing: 6px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+.homepagebutton span {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    color: #000000;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+@keyframes flip {
+    0%,80% {
+        transform: rotateY(360deg)
+    }
+}
+#link{
+    text-decoration: none;
+}

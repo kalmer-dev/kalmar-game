@@ -36,7 +36,7 @@ function connect(gameid, name) {
 }
 
 function startTimer() {
-    var timeLeft = 120;
+    var timeLeft = 90;
     var countdownTimer = setInterval(function() {
         timeLeft--;
         document.getElementById("timer").innerHTML = "Hátralévő idő: " + timeLeft + " másodperc.";

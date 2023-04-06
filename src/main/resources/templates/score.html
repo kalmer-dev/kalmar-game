@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><!--
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,4 +19,72 @@
     <p>Home</p>
 </a>
 </body>
+-->
+<head>
+    <title>Game Scoreboard</title>
+    <link rel="stylesheet" href="/style-score.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F2F2F2;
+        }
+        h1 {
+            text-align: center;
+            /*border: 3px solid green;*/
+            font-size: 39px;
+            color: #ff9c07;
+            font-family: Arial Black, Gadget, sans-serif;
+            text-shadow: 0px 0px 0 rgb(238,139,0),
+            1px 1px 0 rgb(222,123,0),
+            2px 2px 0 rgb(205,106,0),
+            3px 3px 0 rgb(189,90,0),
+            4px 4px 0 rgb(172,73,0),
+            5px 5px  0 rgb(155,56,0),
+            6px 6px 5px rgba(0,0,0,0.6),
+            6px 6px 1px rgba(0,0,0,0.5),
+            0px 0px 5px rgba(0,0,0,.2);
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 2px solid #333;
+            width: 50%;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #fff;
+        }
+        td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+    </style>
+</head>
+<body>
+<h1>Kalmár Scoreboard</h1>
+<table>
+    <tbody>
+    <tr th:each="player : ${game.players}">
+        <td><span th:text="${player.name}" /></td>
+        <td><span th:text="${player.inventory.money}" /></td>
+    </tr></tbody>
+</table>
+<div class="homepagebutton">
+    <audio id="myAudio" th:src="@{/audioLobby}" th:type="'audio/mpeg'" autoplay></audio>
+
+    <a id = "link" href = "/home"><span style="--i:1">H</span>
+        <span style="--i:2">O</span>
+        <span style="--i:3">M</span>
+        <span style="--i:4">E</span>
+    </a>
+</div>
+</body>
+
 </html>
