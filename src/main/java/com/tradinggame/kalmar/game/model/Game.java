@@ -16,7 +16,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Game implements Runnable {
+public class Game {
     private boolean end;
     private List<TradingPost> posts = new ArrayList<>();
 
@@ -34,7 +34,6 @@ public class Game implements Runnable {
         posts.add(new TradingPost(RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom()),678, 914, ((int) (Math.random() * 10) + 10)));
     }
 
-    private Thread thread = new Thread(this);
     private String identifier = RandomStringUtils.random(5, 0, 0, true, true, null, new SecureRandom());
     private List<Player> players = new ArrayList<>();
     private Map gameMap = new Map();
@@ -55,14 +54,6 @@ public class Game implements Runnable {
 
 
 
-    @Override
-    public void run() {
-        try {
-            thread.sleep(120000);
-        } catch (InterruptedException e) {
-            System.out.println("bent");
-        }
-        end = true;
-    }
+
 }
 

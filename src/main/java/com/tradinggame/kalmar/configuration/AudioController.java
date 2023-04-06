@@ -13,7 +13,7 @@ public class AudioController {
 
 
 
-    @GetMapping("/audioHome")
+    @GetMapping("/audio")
     public void streamAudioHome(HttpServletResponse response) throws IOException {
         streamAudio(response, "src/main/resources/sound/coniferous-forest.mp3");
     }

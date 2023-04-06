@@ -15,20 +15,6 @@
 
 <div id="timer"></div>
 
-<script>
-    function startTimer() {
-        var timeLeft = 120;
-        var countdownTimer = setInterval(function() {
-            timeLeft--;
-            document.getElementById("timer").innerHTML = "Hátralévő idő: " + timeLeft + " másodperc.";
-
-            if (timeLeft <= 0) {
-                clearInterval(countdownTimer);
-                document.getElementById("timer").innerHTML = "Az idő lejárt!";
-            }
-        }, 1000);
-    }
-</script>
 <div id="inventory">
 
     <h1>Inventory</h1>
@@ -87,9 +73,9 @@
 
 <div id="minGame" style="display: none">
 
-    <img src="/RockPaperScissors/rock.png" style="display: inline" id="rock" onclick="choose('rock'); playSound('audioRock');"/>
-    <img src="/RockPaperScissors/paper.png" style="display: inline" id="paper" onclick="choose('paper'); playSound('audioPaper');"/>
-    <img src="/RockPaperScissors/scissors.png" style="display: inline" id="ollo" onclick="choose('ollo'); playSound('audioScissors');"/>
+    <img src="/RockPaperScissors/rock.png" style="display: inline" id="rock" onclick="choose('rock')"/>
+    <img src="/RockPaperScissors/paper.png" style="display: inline" id="paper" onclick="choose('paper')"/>
+    <img src="/RockPaperScissors/scissors.png" style="display: inline" id="ollo" onclick="choose('ollo')"/>
 
 </div>
 

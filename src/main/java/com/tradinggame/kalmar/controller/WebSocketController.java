@@ -144,7 +144,6 @@ public class WebSocketController {
     @SendTo("/topic/update/{id}")
     public Game bootGame(NameId message){
         Game game = searchGame(message.getId());
-        game.getThread().start();
         return game;
     }
 

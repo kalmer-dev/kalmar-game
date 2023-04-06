@@ -20,9 +20,7 @@ function connect(gameid, name) {
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/update/' + gameid, function (message) {
             game = JSON.parse(message.body);
-            if(game.end){
-                window.location.href = "/statistic/" + gameid;
-            }
+
             let players = game.players;
             let posts = game.posts;
             getPlayerByName(players);
@@ -35,6 +33,19 @@ function connect(gameid, name) {
         waitstatus();
     });
 
+}
+
+function startTimer() {
+    var timeLeft = 120;
+    var countdownTimer = setInterval(function() {
+        timeLeft--;
+        document.getElementById("timer").innerHTML = "Hátralévő idő: " + timeLeft + " másodperc.";
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownTimer);
+            window.location.href = "/statistic/" + gameID;
+        }
+    }, 1000);
 }
 
 function searchMyMinigame(miniGames) {
