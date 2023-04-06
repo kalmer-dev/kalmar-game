@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo home page</title>
+    <style>
+
+        h1 {
+            text-align: center; /* Center align the heading */
+            font-size: 100px;
+        }
+a{text-align: center;font-size: 70px; }
+        body{background-color: #ff9c07;}
+
+
+    </style>
+
 </head>
 <body>
 <audio id="myAudio" th:src="@{/audioHome}" th:type="'audio/mpeg'" autoplay></audio>
-<h1>Home Page</h1>
+<h1>Kalmár</h1>
 
 <div data-sec-authorize="isAuthenticated()">
     <h2>Hello <span data-sec-authentication="name"></span></h2>
