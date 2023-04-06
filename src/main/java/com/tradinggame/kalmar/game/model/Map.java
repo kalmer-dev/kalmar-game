@@ -2,6 +2,7 @@ package com.tradinggame.kalmar.game.model;
 
 import com.google.gson.Gson;
 import lombok.Getter;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class Map {
 
         try {
 
-
-            File file = new File("src/main/resources/static/Map/1.json");
+            ClassPathResource cpr = new ClassPathResource("static/Map/1.json");
+            File file = cpr.getFile();
             Gson gson = new Gson();
             Reader reader = new FileReader(file);
             mapAsMatrix = gson.fromJson(reader, String[][].class);
