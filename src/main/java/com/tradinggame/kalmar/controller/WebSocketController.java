@@ -83,14 +83,32 @@ public class WebSocketController {
     @SendTo("/topic/update/{id}")
     public Game movePlayer(PlayerMoveInfo playerMoveInfo) {
         Game game = searchGame(playerMoveInfo.id);
-        Player player = new Player(playerMoveInfo.playerName);
+        Player player = null;
+        if (game == null) {
+            return game;
+        }
+        for (Player p : game.getPlayers()) {
+            if (p.getName().equals(playerMoveInfo.playerName)) {
+                player = p;
+                break;
+            }
+        }
+        if (player == null) {
+            return game;
+        }
+
         player.setCoordinateX(playerMoveInfo.x);
         player.setCoordinateY(playerMoveInfo.y);
         player.setOnShop(playerMoveInfo.onShop);
         player.setFightWith(playerMoveInfo.fightWith);
-        player.getInventory().setTree(playerMoveInfo.tree);
-        player.getInventory().setMoney(playerMoveInfo.money);
-        game.updatePlayer(player);
+        if (playerMoveInfo.tree >= 0 && playerMoveInfo.money >= 0) {
+            player.getInventory().setTree(playerMoveInfo.tree);
+            player.getInventory().setMoney(playerMoveInfo.money);
+        } else {
+            //player.getInventory().setMoney(-23);
+
+        }
+        //game.updatePlayer(player);
         return game;
     }
 
