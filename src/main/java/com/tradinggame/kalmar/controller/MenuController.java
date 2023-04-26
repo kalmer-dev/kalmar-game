@@ -30,9 +30,9 @@ public class MenuController {
 
 
 
-   @RequestMapping(value = "/game/{játékazonosító}/{játékosazonosító}", method = RequestMethod.GET)
-        public String game(@PathVariable("játékazonosító") String gameId,
-                           @PathVariable("játékosazonosító") String playerId) {
-        return "Map";
-   }
+//   @RequestMapping(value = "/game/{játékazonosító}/{játékosazonosító}", method = RequestMethod.GET)
+//        public String game(@PathVariable("játékazonosító") String gameId,
+//                           @PathVariable("játékosazonosító") String playerId) {
+//        return "Map";
+//   }
 }

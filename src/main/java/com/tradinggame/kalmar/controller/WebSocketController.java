@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.tradinggame.kalmar.game.model.Game;
 import com.tradinggame.kalmar.game.model.MiniGame;
 import com.tradinggame.kalmar.game.model.Player;
+import com.tradinggame.kalmar.game.model.TradingPost;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,14 +102,12 @@ public class WebSocketController {
         player.setCoordinateY(playerMoveInfo.y);
         player.setOnShop(playerMoveInfo.onShop);
         player.setFightWith(playerMoveInfo.fightWith);
-        if (playerMoveInfo.tree >= 0 && playerMoveInfo.money >= 0) {
-            player.getInventory().setTree(playerMoveInfo.tree);
-            player.getInventory().setMoney(playerMoveInfo.money);
-        } else {
-            //player.getInventory().setMoney(-23);
 
+        for (TradingPost tradingPost : game.getPosts()) {
+            if (tradingPost.getIdentifier().equals(playerMoveInfo.shopID)) {
+                tradingPost.trade(player.getInventory(), playerMoveInfo.amount);
+            }
         }
-        //game.updatePlayer(player);
         return game;
     }
 
@@ -214,6 +213,8 @@ class PlayerMoveInfo{
     int x;
     int y;
     boolean onShop;
+    String shopID;
+    int amount;
     String fightWith;
     int tree;
     int money;

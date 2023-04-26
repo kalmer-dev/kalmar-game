@@ -13,4 +13,16 @@ public class TradingPost {
     private int coordinateX;
     private int coordinateY;
     private int treePrice;
+
+    public void trade(Inventory inventory, int amount) {
+        int money = inventory.getMoney();
+        int cost = amount * treePrice;
+        int trees = inventory.getTree();
+        // check enough money at buy and trees at sell
+        if (money >= cost && !(amount < 0 && amount * -1 > trees)) {
+            inventory.setMoney(money - cost);
+            inventory.setTree(trees + amount);
+        }
+
+    }
 }

@@ -7,6 +7,7 @@ let others;
 let game;
 let inventory;
 let tradingPosts;
+let actualTradingPost;
 let myMiniGame;
 
 function connect(gameid, name) {
@@ -24,7 +25,7 @@ function connect(gameid, name) {
             let players = game.players;
             let posts = game.posts;
             getPlayerByName(players);
-            showtradingposts(posts);
+            showTradingPosts(posts);
         });
         stompClient.subscribe('/topic/minigame/' + gameid, function (message) {
             let miniGames = JSON.parse(message.body);
@@ -173,13 +174,15 @@ function waitstatus() {
     }));
 }
 
-function sendStatus() {
+function sendStatus(shopID, tradingAmount) {
     stompClient.send("/app/refresh/" + gameID, {}, JSON.stringify({
         id: gameID,
         playerName: player.name,
         x: player.coordinateX,
         y: player.coordinateY,
         onShop: player.onShop,
+        shopID : shopID,
+        amount : tradingAmount,
         fightWith: player.fightWith,
         tree: player.inventory.tree,
         money: player.inventory.money
@@ -260,7 +263,7 @@ function addOtherPlayersToPage(otherPlayers) {
     });
 }
 
-function showtradingposts(places) {
+function showTradingPosts(places) {
     tradingPosts = places;
     console.log(tradingPosts);
     let posts = document.getElementById('posts');
@@ -276,6 +279,7 @@ function showtradingposts(places) {
             if (!(player.onShop || !(player.fightWith == ''))) {
                 let postId = this.getAttribute('id');
                 player.onShop = true;
+                actualTradingPost = postId;
                 showShop(postId);
                 sendStatus();
             }
@@ -285,7 +289,7 @@ function showtradingposts(places) {
 }
 
 function showShop(id) {
-    let city = searchCotyById(id);
+    let city = searchCityById(id);
     let shop = document.getElementById('shop');
     let treeCost = document.getElementById('treecost');
     let treenumber = document.getElementById('treenumber');
@@ -296,7 +300,7 @@ function showShop(id) {
     shop.style.display = 'block'
 }
 
-function searchCotyById(id) {
+function searchCityById(id) {
     for (let i = 0; i < tradingPosts.length; i++) {
         if (tradingPosts[i].identifier === id) {
             return tradingPosts[i];
@@ -343,13 +347,15 @@ function choose(choose) {
 
 function shoping() {
     let shop = document.getElementById('shop');
-    let treenumber = parseInt(document.getElementById('treenumber').value);
+    let tradingAmount = parseInt(document.getElementById('treenumber').value);
     let cost = parseInt(document.getElementById('treecost').innerText);
-    player.inventory.tree += treenumber;
-    console.log(player.inventory.tree)
-    player.inventory.money -= treenumber * cost;
+    //player.inventory.tree += treenumber;
+    //console.log(player.inventory.tree)
+    //player.inventory.money -= treenumber * cost;
     player.onShop = false;
-    sendStatus();
+
+    sendStatus(actualTradingPost, tradingAmount);
+
     shop.style.display = 'none';
 }
 

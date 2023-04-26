@@ -24,4 +24,9 @@ public class Player {
 
     }
 
+    public void setMoney(){
+
+    }
+
+
 }
