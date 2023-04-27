@@ -118,14 +118,14 @@ public class WebSocketController {
 
         Game game = searchGame(message.getId());
         Player player = new Player(message.name);
-        for (Player actual:game.getPlayers()) {
+        for (Player actual : game.getPlayers()) {
             if(actual.getName().equals(player.getName())){
                 return game.getPlayers();
 
             }
         }
 
-                game.putPlayer(player);
+        game.putPlayer(player);
         return game.getPlayers();
     }
 

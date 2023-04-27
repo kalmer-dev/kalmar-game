@@ -20,13 +20,7 @@ public class Player {
         coordinateY = (int)(Math.random()*3000);
         viewX = 0;
         viewY = 0;
-        inventory=new Inventory();
+        inventory = new Inventory();
 
     }
-
-    public void setMoney(){
-
-    }
-
-
 }

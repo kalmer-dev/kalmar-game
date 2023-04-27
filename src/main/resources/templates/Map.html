@@ -49,7 +49,10 @@
     <input type="number" id="treenumber"></h2>
     <h2></h2>
     <h2></h2>'
-    <button type="submit" onclick="shoping(); playSound('doorAudio');">Accept</button>
+    <button type="submit" onclick="shoping('Buy'); playSound('doorAudio');">Buy</button>
+    <button type="submit" onclick="shoping('Sell'); playSound('doorAudio');">Sell</button>
+    <button type="submit" onclick="shoping('Buy all'); playSound('doorAudio');">Buy all</button>
+    <button type="submit" onclick="shoping('Sell all'); playSound('doorAudio');">Sell all</button>
     <audio id="doorAudio" th:src="@{/audioDoor}" th:type="'audio/mpeg'"></audio>
 </div>
 <script>

@@ -5,10 +5,8 @@ import lombok.Getter;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Map {
+public class GameMap {
 
 
     //    private final int[][] mapAsMatrix =
@@ -17,7 +15,7 @@ public class Map {
     @Getter
     private Tile[][] tiles;
 
-    public Map() {
+    public GameMap() {
 
 
         try {

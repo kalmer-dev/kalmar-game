@@ -345,15 +345,21 @@ function choose(choose) {
 
 }
 
-function shoping() {
+function shoping(type) {
     let shop = document.getElementById('shop');
+
     let tradingAmount = parseInt(document.getElementById('treenumber').value);
     let cost = parseInt(document.getElementById('treecost').innerText);
-    //player.inventory.tree += treenumber;
-    //console.log(player.inventory.tree)
-    //player.inventory.money -= treenumber * cost;
-    player.onShop = false;
 
+    player.onShop = false;
+    if (type === "Sell") {
+        tradingAmount *= -1;
+    } else if (type === "Sell all") {
+        console.log("Sell all");
+        tradingAmount = -player.inventory.tree;
+    } else if (type === "Buy all") {
+        tradingAmount = (player.inventory.money / cost) | 0;
+    }
     sendStatus(actualTradingPost, tradingAmount);
 
     shop.style.display = 'none';
